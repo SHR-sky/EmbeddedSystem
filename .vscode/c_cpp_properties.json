@@ -4,7 +4,7 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "F:\\EmbeddedSystem\\WIFI部分\\ESP8266\\.pio"
+                "F:\\EmbeddedSystem\\WIFI\\ESP8266\\.pio"
             ],
             "defines": [
                 "_DEBUG",
