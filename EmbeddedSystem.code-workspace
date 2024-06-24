@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "EmbeddedSystem",
+			"path": "."
+		},
+		{
+			"name": "ESP8266",
+			"path": "WIFI/ESP8266"
+		}
+	],
+	"settings": {}
+}
