@@ -119,11 +119,11 @@ void ds1032_init()
 	ds1302_wirte_rig(0x80, 0x37); // seconds37秒
 	ds1302_wirte_rig(0x82, 0x58); // minutes58分
 	ds1302_wirte_rig(0x84, 0x23); // hours23时
-	ds1302_wirte_rig(0x86, 0x30); // date30日
-	ds1302_wirte_rig(0x88, 0x09); // months9月
-	ds1302_wirte_rig(0x8a, 0x07); // days星期日
-	ds1302_wirte_rig(0x8c, 0x20); // year2020年
-	ds1302_wirte_rig(0x8e, 0x80); // 关闭写保护
+	ds1302_wirte_rig(0x86, 0x31); // date31日
+	ds1302_wirte_rig(0x88, 0x10); // months10月
+	ds1302_wirte_rig(0x8a, 0x02); // days星期二
+	ds1302_wirte_rig(0x8c, 0x23); // year2023年
+	ds1302_wirte_rig(0x8e, 0x80); // 开启写保护
 }
 
 void ds1032_read_time()
