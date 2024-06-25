@@ -9,6 +9,7 @@ void BEEP_Init(void)
  RCC_APB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);   
  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11;  
  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT; 
+ GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
  GPIO_Init(GPIOA, &GPIO_InitStructure);
  GPIO_ResetBits(GPIOA,GPIO_Pin_11);

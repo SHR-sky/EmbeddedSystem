@@ -20,6 +20,7 @@ void HC_Init(void)
     GPIO_InitStructure.GPIO_Pin =HCSR04_TRIG;      
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+    GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
     GPIO_Init(HCSR04_PORT, &GPIO_InitStructure);
     GPIO_ResetBits(HCSR04_PORT,HCSR04_TRIG);
  

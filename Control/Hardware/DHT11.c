@@ -10,6 +10,7 @@ void Data_Out_Init(void)
 	RCC_APB2PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
 
 	GPIO_Structure.GPIO_Mode = GPIO_Mode_OUT;
+	GPIO_Structure.GPIO_OType = GPIO_OType_PP;
 	GPIO_Structure.GPIO_Pin = GPIO_Pin_8;
 	GPIO_Structure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOB, &GPIO_Structure);
