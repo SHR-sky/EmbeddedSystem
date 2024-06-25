@@ -1,5 +1,6 @@
 .\objects\dht11.o: ..\..\Hardware\DHT11.c
 .\objects\dht11.o: ..\..\Hardware\DHT11.h
+.\objects\dht11.o: ..\..\Hardware\sys.h
 .\objects\dht11.o: ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\dht11.o: ..\..\Libraries\CMSIS\Include\core_cm4.h
 .\objects\dht11.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stdint.h
@@ -35,4 +36,10 @@
 .\objects\dht11.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dac.h
 .\objects\dht11.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h
 .\objects\dht11.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fsmc.h
+.\objects\dht11.o: ..\..\Hardware\TIM.h
+.\objects\dht11.o: ..\..\Hardware\sys.h
+.\objects\dht11.o: ..\..\Hardware\GPIO.h
+.\objects\dht11.o: ..\..\Hardware\DHT11.h
+.\objects\dht11.o: ..\..\Hardware\Serial.h
+.\objects\dht11.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\dht11.o: ..\..\Hardware\Delay.h

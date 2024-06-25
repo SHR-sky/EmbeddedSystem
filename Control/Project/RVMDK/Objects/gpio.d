@@ -1,4 +1,6 @@
 .\objects\gpio.o: ..\..\Hardware\GPIO.c
+.\objects\gpio.o: ..\..\Hardware\GPIO.h
+.\objects\gpio.o: ..\..\Hardware\sys.h
 .\objects\gpio.o: ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\gpio.o: ..\..\Libraries\CMSIS\Include\core_cm4.h
 .\objects\gpio.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stdint.h
@@ -34,3 +36,10 @@
 .\objects\gpio.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dac.h
 .\objects\gpio.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h
 .\objects\gpio.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fsmc.h
+.\objects\gpio.o: ..\..\Hardware\TIM.h
+.\objects\gpio.o: ..\..\Hardware\sys.h
+.\objects\gpio.o: ..\..\Hardware\GPIO.h
+.\objects\gpio.o: ..\..\Hardware\DHT11.h
+.\objects\gpio.o: ..\..\Hardware\Serial.h
+.\objects\gpio.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\gpio.o: ..\..\Hardware\Delay.h

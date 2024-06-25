@@ -1,4 +1,5 @@
-#include "stm32f4xx.h"
+#include "GPIO.h"
+
 void GPIO_Config(void)
 {
 	// USART2_TX PD5 USART2_RX PD6

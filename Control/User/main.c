@@ -1,8 +1,4 @@
-#include "stm32f4xx.h"
-#include "TIM.h"
-#include "GPIO.h"
-#include "DHT11.h"
-#include "Serial.h"
+#include "sys.h"
 
 uint8_t temperature, dec;
 

@@ -1,4 +1,7 @@
 .\objects\serial.o: ..\..\Hardware\Serial.c
+.\objects\serial.o: ..\..\Hardware\Serial.h
+.\objects\serial.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\serial.o: ..\..\Hardware\sys.h
 .\objects\serial.o: ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\serial.o: ..\..\Libraries\CMSIS\Include\core_cm4.h
 .\objects\serial.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stdint.h
@@ -34,5 +37,10 @@
 .\objects\serial.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dac.h
 .\objects\serial.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h
 .\objects\serial.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fsmc.h
-.\objects\serial.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\serial.o: ..\..\Hardware\TIM.h
+.\objects\serial.o: ..\..\Hardware\sys.h
+.\objects\serial.o: ..\..\Hardware\GPIO.h
+.\objects\serial.o: ..\..\Hardware\DHT11.h
+.\objects\serial.o: ..\..\Hardware\Serial.h
+.\objects\serial.o: ..\..\Hardware\Delay.h
 .\objects\serial.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stdarg.h

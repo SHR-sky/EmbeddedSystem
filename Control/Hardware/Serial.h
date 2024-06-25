@@ -1,7 +1,8 @@
 #ifndef _SERIAL__H_
 #define _SERIAL__H_
+
 #include "stdio.h"
-#include "stm32f4xx.h"
+#include "sys.h"
 
 void Serial_Init(void);
 void Serial_SendByte(uint8_t Byte);

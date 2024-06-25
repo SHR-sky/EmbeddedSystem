@@ -828,6 +828,41 @@
               <FileType>5</FileType>
               <FilePath>..\..\Hardware\DHT11.h</FilePath>
             </File>
+            <File>
+              <FileName>HC_SR04.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Hardware\HC_SR04.c</FilePath>
+            </File>
+            <File>
+              <FileName>HC_SR04.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\Hardware\HC_SR04.h</FilePath>
+            </File>
+            <File>
+              <FileName>sys.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\Hardware\sys.h</FilePath>
+            </File>
+            <File>
+              <FileName>myiic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Hardware\myiic.c</FilePath>
+            </File>
+            <File>
+              <FileName>myiic.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\Hardware\myiic.h</FilePath>
+            </File>
+            <File>
+              <FileName>beep.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Hardware\beep.c</FilePath>
+            </File>
+            <File>
+              <FileName>beep.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\Hardware\beep.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

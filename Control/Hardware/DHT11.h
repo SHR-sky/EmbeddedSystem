@@ -1,7 +1,7 @@
 #ifndef _DHT11__H_
 #define _DHT11__H_
-#include "stm32f4xx.h"                  // Device header
-#include "Delay.h"
+#include "sys.h"                // Device header
+
 
 void Data_Out_Init(void);
 void Data_In_Init(void);
