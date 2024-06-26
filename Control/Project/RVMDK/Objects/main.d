@@ -42,3 +42,13 @@
 .\objects\main.o: ..\..\Hardware\Serial.h
 .\objects\main.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\main.o: ..\..\Hardware\Delay.h
+.\objects\main.o: ..\..\FreeRTOS\include\FreeRTOS.h
+.\objects\main.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\main.o: ..\..\FreeRTOS\include\FreeRTOSConfig.h
+.\objects\main.o: ..\..\FreeRTOS\include\projdefs.h
+.\objects\main.o: ..\..\FreeRTOS\include\portable.h
+.\objects\main.o: ..\..\FreeRTOS\include\deprecated_definitions.h
+.\objects\main.o: ..\..\FreeRTOS\port\portmacro.h
+.\objects\main.o: ..\..\FreeRTOS\include\mpu_wrappers.h
+.\objects\main.o: ..\..\FreeRTOS\include\task.h
+.\objects\main.o: ..\..\FreeRTOS\include\list.h

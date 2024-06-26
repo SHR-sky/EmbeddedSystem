@@ -1,6 +1,5 @@
 #include "beep.h"
 
-
 int melody[] = {50, 50, 50, 50, 200, 200, 200, 400, 400, 500, 500, 500};
  
 void BEEP_Init(void)

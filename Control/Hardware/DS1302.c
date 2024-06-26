@@ -3,7 +3,7 @@
 struct TIMEData TimeData;
 u8 read_time[7];
 
-void ds1302_gpio_init() // CE,SCLK端口初始化
+void ds1302_gpio_init(void) // CE,SCLK端口初始化
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
@@ -22,7 +22,7 @@ void ds1302_gpio_init() // CE,SCLK端口初始化
 	GPIO_ResetBits(GPIOC, GPIO_Pin_12);
 }
 
-void ds1032_DATAOUT_init() // 配置双向I/O端口为输出态
+void ds1032_DATAOUT_init(void) // 配置双向I/O端口为输出态
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
@@ -35,7 +35,7 @@ void ds1032_DATAOUT_init() // 配置双向I/O端口为输出态
 	GPIO_ResetBits(GPIOC, GPIO_Pin_10);
 }
 
-void ds1032_DATAINPUT_init() // 配置双向I/O端口为输入态
+void ds1032_DATAINPUT_init(void) // 配置双向I/O端口为输入态
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
@@ -113,7 +113,7 @@ u8 ds1302_read_rig(u8 address) // 从指定地址读取一字节数据
 	return return_data;
 }
 
-void ds1032_init()
+void ds1032_init(void)
 {
 	ds1302_wirte_rig(0x8e, 0x00); // 关闭写保护
 	ds1302_wirte_rig(0x80, 0x37); // seconds37秒
@@ -126,7 +126,7 @@ void ds1032_init()
 	ds1302_wirte_rig(0x8e, 0x80); // 开启写保护
 }
 
-void ds1032_read_time()
+void ds1032_read_time(void)
 {
 	read_time[0] = ds1302_read_rig(0x81); // 读秒
 	read_time[1] = ds1302_read_rig(0x83); // 读分
@@ -137,7 +137,7 @@ void ds1032_read_time()
 	read_time[6] = ds1302_read_rig(0x8D); // 读年
 }
 
-void ds1032_read_realTime()
+void ds1032_read_realTime(void)
 {
 	ds1032_read_time(); // BCD码转换为10进制
 	TimeData.second = (read_time[0] >> 4) * 10 + (read_time[0] & 0x0f);

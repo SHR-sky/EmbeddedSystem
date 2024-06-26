@@ -1,4 +1,6 @@
 #include "sys.h"
+#include "FreeRTOS.h"
+#include "task.h"
 
 uint8_t temperature, dec;
 
