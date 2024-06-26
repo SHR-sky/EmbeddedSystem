@@ -50,7 +50,6 @@
 ".\objects\timers.o"
 ".\objects\port.o"
 ".\objects\heap_4.o"
-".\objects\gpio.o"
 ".\objects\serial.o"
 ".\objects\tim.o"
 ".\objects\delay.o"

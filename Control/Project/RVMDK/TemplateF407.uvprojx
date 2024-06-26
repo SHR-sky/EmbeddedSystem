@@ -829,16 +829,6 @@
           <GroupName>Hardware</GroupName>
           <Files>
             <File>
-              <FileName>GPIO.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Hardware\GPIO.c</FilePath>
-            </File>
-            <File>
-              <FileName>GPIO.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\Hardware\GPIO.h</FilePath>
-            </File>
-            <File>
               <FileName>Serial.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Hardware\Serial.c</FilePath>

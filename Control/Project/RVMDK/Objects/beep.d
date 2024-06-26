@@ -38,7 +38,6 @@
 .\objects\beep.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fsmc.h
 .\objects\beep.o: ..\..\Hardware\TIM.h
 .\objects\beep.o: ..\..\Hardware\sys.h
-.\objects\beep.o: ..\..\Hardware\GPIO.h
 .\objects\beep.o: ..\..\Hardware\DHT11.h
 .\objects\beep.o: ..\..\Hardware\Serial.h
 .\objects\beep.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stdio.h

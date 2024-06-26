@@ -38,7 +38,6 @@
 .\objects\delay.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fsmc.h
 .\objects\delay.o: ..\..\Hardware\TIM.h
 .\objects\delay.o: ..\..\Hardware\sys.h
-.\objects\delay.o: ..\..\Hardware\GPIO.h
 .\objects\delay.o: ..\..\Hardware\DHT11.h
 .\objects\delay.o: ..\..\Hardware\Serial.h
 .\objects\delay.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stdio.h

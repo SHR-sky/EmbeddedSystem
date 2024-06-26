@@ -39,7 +39,6 @@
 .\objects\serial.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fsmc.h
 .\objects\serial.o: ..\..\Hardware\TIM.h
 .\objects\serial.o: ..\..\Hardware\sys.h
-.\objects\serial.o: ..\..\Hardware\GPIO.h
 .\objects\serial.o: ..\..\Hardware\DHT11.h
 .\objects\serial.o: ..\..\Hardware\Serial.h
 .\objects\serial.o: ..\..\Hardware\Delay.h

@@ -38,7 +38,6 @@
 .\objects\hc_sr04.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fsmc.h
 .\objects\hc_sr04.o: ..\..\Hardware\TIM.h
 .\objects\hc_sr04.o: ..\..\Hardware\sys.h
-.\objects\hc_sr04.o: ..\..\Hardware\GPIO.h
 .\objects\hc_sr04.o: ..\..\Hardware\DHT11.h
 .\objects\hc_sr04.o: ..\..\Hardware\Serial.h
 .\objects\hc_sr04.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stdio.h

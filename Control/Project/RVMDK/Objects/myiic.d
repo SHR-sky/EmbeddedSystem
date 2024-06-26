@@ -38,7 +38,6 @@
 .\objects\myiic.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fsmc.h
 .\objects\myiic.o: ..\..\Hardware\TIM.h
 .\objects\myiic.o: ..\..\Hardware\sys.h
-.\objects\myiic.o: ..\..\Hardware\GPIO.h
 .\objects\myiic.o: ..\..\Hardware\DHT11.h
 .\objects\myiic.o: ..\..\Hardware\Serial.h
 .\objects\myiic.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stdio.h

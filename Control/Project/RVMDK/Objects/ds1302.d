@@ -38,7 +38,6 @@
 .\objects\ds1302.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fsmc.h
 .\objects\ds1302.o: ..\..\Hardware\TIM.h
 .\objects\ds1302.o: ..\..\Hardware\sys.h
-.\objects\ds1302.o: ..\..\Hardware\GPIO.h
 .\objects\ds1302.o: ..\..\Hardware\DHT11.h
 .\objects\ds1302.o: ..\..\Hardware\Serial.h
 .\objects\ds1302.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stdio.h

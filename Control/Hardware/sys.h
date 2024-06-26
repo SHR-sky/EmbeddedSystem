@@ -4,7 +4,6 @@
 /*可将所有需要用到的头文件在此处包含，这样之后新建C文件只需包含"sys.h"即可*/
 #include "stm32f4xx.h"                  // Device header
 #include "TIM.h"
-#include "GPIO.h"
 #include "DHT11.h"
 #include "Serial.h"
 #include "Delay.h"
