@@ -2,7 +2,7 @@
 .\objects\main.o: ..\..\Hardware\sys.h
 .\objects\main.o: ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\main.o: ..\..\Libraries\CMSIS\Include\core_cm4.h
-.\objects\main.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\main.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\main.o: ..\..\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\main.o: ..\..\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\main.o: ..\..\Libraries\CMSIS\Include\core_cmSimd.h
@@ -39,10 +39,11 @@
 .\objects\main.o: ..\..\Hardware\sys.h
 .\objects\main.o: ..\..\Hardware\DHT11.h
 .\objects\main.o: ..\..\Hardware\Serial.h
-.\objects\main.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\main.o: ..\..\Hardware\Delay.h
+.\objects\main.o: ..\..\Hardware\LD3320.h
 .\objects\main.o: ..\..\FreeRTOS\include\FreeRTOS.h
-.\objects\main.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\main.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\main.o: ..\..\FreeRTOS\include\FreeRTOSConfig.h
 .\objects\main.o: ..\..\FreeRTOS\include\projdefs.h
 .\objects\main.o: ..\..\FreeRTOS\include\portable.h

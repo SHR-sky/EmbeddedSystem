@@ -3,7 +3,7 @@
 .\objects\beep.o: ..\..\Hardware\sys.h
 .\objects\beep.o: ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\beep.o: ..\..\Libraries\CMSIS\Include\core_cm4.h
-.\objects\beep.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\beep.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\beep.o: ..\..\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\beep.o: ..\..\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\beep.o: ..\..\Libraries\CMSIS\Include\core_cmSimd.h
@@ -40,5 +40,6 @@
 .\objects\beep.o: ..\..\Hardware\sys.h
 .\objects\beep.o: ..\..\Hardware\DHT11.h
 .\objects\beep.o: ..\..\Hardware\Serial.h
-.\objects\beep.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\beep.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\beep.o: ..\..\Hardware\Delay.h
+.\objects\beep.o: ..\..\Hardware\LD3320.h

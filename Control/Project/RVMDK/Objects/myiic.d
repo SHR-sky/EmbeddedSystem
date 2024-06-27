@@ -3,7 +3,7 @@
 .\objects\myiic.o: ..\..\Hardware\sys.h
 .\objects\myiic.o: ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\myiic.o: ..\..\Libraries\CMSIS\Include\core_cm4.h
-.\objects\myiic.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\myiic.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\myiic.o: ..\..\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\myiic.o: ..\..\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\myiic.o: ..\..\Libraries\CMSIS\Include\core_cmSimd.h
@@ -40,5 +40,6 @@
 .\objects\myiic.o: ..\..\Hardware\sys.h
 .\objects\myiic.o: ..\..\Hardware\DHT11.h
 .\objects\myiic.o: ..\..\Hardware\Serial.h
-.\objects\myiic.o: F:\keil\core\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\myiic.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\myiic.o: ..\..\Hardware\Delay.h
+.\objects\myiic.o: ..\..\Hardware\LD3320.h

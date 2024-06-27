@@ -7,6 +7,7 @@
 #include "DHT11.h"
 #include "Serial.h"
 #include "Delay.h"
+#include "LD3320.h"
 
 /********************************************************************/
 																    
