@@ -1,17 +1,18 @@
 #ifndef _LD3320_H__
 #define _LD3320_H__
 #include "sys.h"
+#include "string.h"
  
-///ÒÔÏÂÈı¸ö×´Ì¬¶¨ÒåÓÃÀ´¼ÇÂ¼³ÌĞòÊÇÔÚÔËĞĞASRÊ¶±ğ»¹ÊÇÔÚÔËĞĞMP3²¥·Å
+///ä»¥ä¸‹ä¸‰ä¸ªçŠ¶æ€å®šä¹‰ç”¨æ¥è®°å½•ç¨‹åºæ˜¯åœ¨è¿è¡ŒASRè¯†åˆ«è¿˜æ˜¯åœ¨è¿è¡ŒMP3æ’­æ”¾
 #define LD_MODE_IDLE			0x00
 #define LD_MODE_ASR_RUN			0x08
 #define LD_MODE_MP3		 		0x40
-///ÒÔÏÂÎå¸ö×´Ì¬¶¨ÒåÓÃÀ´¼ÇÂ¼³ÌĞòÊÇÔÚÔËĞĞASRÊ¶±ğ¹ı³ÌÖĞµÄÄÄ¸ö×´Ì¬
-#define LD_ASR_NONE					0x00	//±íÊ¾Ã»ÓĞÔÚ×÷ASRÊ¶±ğ
-#define LD_ASR_RUNING				0x01	//±íÊ¾LD3320ÕıÔÚ×÷ASRÊ¶±ğÖĞ
-#define LD_ASR_FOUNDOK			0x10	//±íÊ¾Ò»´ÎÊ¶±ğÁ÷³Ì½áÊøºó£¬ÓĞÒ»¸öÊ¶±ğ½á¹û
-#define LD_ASR_FOUNDZERO 		0x11	//±íÊ¾Ò»´ÎÊ¶±ğÁ÷³Ì½áÊøºó£¬Ã»ÓĞÊ¶±ğ½á¹û
-#define LD_ASR_ERROR	 			0x31	//	±íÊ¾Ò»´ÎÊ¶±ğÁ÷³ÌÖĞLD3320Ğ¾Æ¬ÄÚ²¿³öÏÖ²»ÕıÈ·µÄ×´Ì¬
+///ä»¥ä¸‹äº”ä¸ªçŠ¶æ€å®šä¹‰ç”¨æ¥è®°å½•ç¨‹åºæ˜¯åœ¨è¿è¡ŒASRè¯†åˆ«è¿‡ç¨‹ä¸­çš„å“ªä¸ªçŠ¶æ€
+#define LD_ASR_NONE					0x00	//è¡¨ç¤ºæ²¡æœ‰åœ¨ä½œASRè¯†åˆ«
+#define LD_ASR_RUNING				0x01	//è¡¨ç¤ºLD3320æ­£åœ¨ä½œASRè¯†åˆ«ä¸­
+#define LD_ASR_FOUNDOK			0x10	//è¡¨ç¤ºä¸€æ¬¡è¯†åˆ«æµç¨‹ç»“æŸåï¼Œæœ‰ä¸€ä¸ªè¯†åˆ«ç»“æœ
+#define LD_ASR_FOUNDZERO 		0x11	//è¡¨ç¤ºä¸€æ¬¡è¯†åˆ«æµç¨‹ç»“æŸåï¼Œæ²¡æœ‰è¯†åˆ«ç»“æœ
+#define LD_ASR_ERROR	 			0x31	//	è¡¨ç¤ºä¸€æ¬¡è¯†åˆ«æµç¨‹ä¸­LD3320èŠ¯ç‰‡å†…éƒ¨å‡ºç°ä¸æ­£ç¡®çš„çŠ¶æ€
  
 #define CLK_IN   					72/* user need modify this value according to clock in */
 #define LD_PLL_11					(uint8_t)((CLK_IN/2.0)-1)
@@ -24,28 +25,28 @@
 #define LD_PLL_ASR_1D 		0x1f
  
 #define MIC_VOL 0x43
-///Ê¶±ğÂë£¨¿Í»§ĞŞ¸Ä´¦£©
-#define CODE_LSD	1	 //»½ĞÑ
-#define CODE_SS	  2	 //Ãû×Ö
-#define LDE_1	  3	 //´ò¿ªºì
-#define LDE_2	  4	 //´ò¿ªÂÌ
-#define LDE_3		5  //´ò¿ªÀ¶
-#define LDE_All_OFF		6  //×´Ì¬
-#define voice_J_0  7	//Ìá¸ßÒôÁ¿
+///è¯†åˆ«ç ï¼ˆå®¢æˆ·ä¿®æ”¹å¤„ï¼‰
+#define CODE_LSD	1	 //å”¤é†’
+#define CODE_SS	  2	 //åå­—
+#define LDE_1	  3	 //æ‰“å¼€çº¢
+#define LDE_2	  4	 //æ‰“å¼€ç»¿
+#define LDE_3		5  //æ‰“å¼€è“
+#define LDE_All_OFF		6  //çŠ¶æ€
+#define voice_J_0  7	//æé«˜éŸ³é‡
 
-#define CODE_WEATHER 17 // ÌìÆøÔõÃ´Ñù
-#define CODE_VOICE_UP 18 // Ìá¸ßÒôÁ¿
-#define CODE_VOICE_DOWN 19 // ¼õĞ¡ÒôÁ¿
-#define CODE_MUSIC 20 // ²¥·ÅÒôÀÖ
-#define CODE_INTRO 21 // ½éÉÜ
+#define CODE_WEATHER 17 // å¤©æ°”æ€ä¹ˆæ ·
+#define CODE_VOICE_UP 18 // æé«˜éŸ³é‡
+#define CODE_VOICE_DOWN 19 // å‡å°éŸ³é‡
+#define CODE_MUSIC 20 // æ’­æ”¾éŸ³ä¹
+#define CODE_INTRO 21 // ä»‹ç»
  
-#define LDE_1_1	  51	 //´ò¿ªºì
-#define LDE_2_1	  52	 //´ò¿ªÂÌ
-#define LDE_3_1		53  //´ò¿ªÀ¶
-#define voice_J_1  57	//½µµÍÒôÁ¿
+#define LDE_1_1	  51	 //æ‰“å¼€çº¢
+#define LDE_2_1	  52	 //æ‰“å¼€ç»¿
+#define LDE_3_1		53  //æ‰“å¼€è“
+#define voice_J_1  57	//é™ä½éŸ³é‡
  
-#define chen		90  //ÓéÀÖ
-#define chen_1		91  //ÓéÀÖ
+#define chen		90  //å¨±ä¹
+#define chen_1		91  //å¨±ä¹
  
  
 /*
@@ -58,14 +59,14 @@ MOSI-PC12
 RST-PC13
 */
  
-///LD3320Òı½ÅÏà¹Ø¶¨Òå
+///LD3320å¼•è„šç›¸å…³å®šä¹‰
 #define LD3320RST_PIN					GPIO_Pin_13		
 #define LD3320RST_GPIO_PORT		GPIOC
 #define LD3320RST_GPIO_CLK		RCC_AHB1Periph_GPIOC
 #define LD_RST_H() 						GPIO_SetBits(GPIOC, GPIO_Pin_13)
 #define LD_RST_L() 						GPIO_ResetBits(GPIOC, GPIO_Pin_13)
  
-///LD3320Òı½ÅÏà¹Ø¶¨Òå
+///LD3320å¼•è„šç›¸å…³å®šä¹‰
 #define LD3320CS_PIN					GPIO_Pin_4		
 #define LD3320CS_GPIO_PORT		GPIOA
 #define LD3320CS_GPIO_CLK			RCC_AHB1Periph_GPIOA
@@ -101,19 +102,19 @@ RST-PC13
 #define LD3320SPISCK_GPIO_PORT		GPIOC
 #define LD3320SPISCK_GPIO_CLK		RCC_AHB1Periph_GPIOC
  
-///Ïà¹Ø³õÊ¼»¯
+///ç›¸å…³åˆå§‹åŒ–
 void LD3320_main(void);
 void LD3320_init(void);
 static void LD3320_GPIO_Cfg(void);
 static void LD3320_EXTI_Cfg(void);
 static void LD3320_SPI_cfg(void);
-///ÖĞ¼ä²ã
+///ä¸­é—´å±‚
 static void LD3320_delay(unsigned long uldata);
 uint8_t RunASR(void);
 void LD_reset(void);
 void LD_AsrStart(void);
 uint8_t LD_Check_ASRBusyFlag_b2(void);
-///¼Ä´æÆ÷²Ù×÷
+///å¯„å­˜å™¨æ“ä½œ
 uint8_t spi_send_byte(uint8_t byte);
 void LD_WriteReg(uint8_t data1,uint8_t data2);
 uint8_t LD_ReadReg(uint8_t reg_add);

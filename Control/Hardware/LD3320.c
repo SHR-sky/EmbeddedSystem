@@ -1,24 +1,24 @@
 #include "LD3320.h"
-#include "string.h"
+
  
 /************************************************************************************
-//	nAsrStatus ÓÃÀ´ÔÚmainÖ÷³ÌĞòÖĞ±íÊ¾³ÌĞòÔËĞĞµÄ×´Ì¬£¬²»ÊÇLD3320Ğ¾Æ¬ÄÚ²¿µÄ×´Ì¬¼Ä´æÆ÷
-//	LD_ASR_NONE:			±íÊ¾Ã»ÓĞÔÚ×÷ASRÊ¶±ğ
-//	LD_ASR_RUNING£º		±íÊ¾LD3320ÕıÔÚ×÷ASRÊ¶±ğÖĞ
-//	LD_ASR_FOUNDOK:		±íÊ¾Ò»´ÎÊ¶±ğÁ÷³Ì½áÊøºó£¬ÓĞÒ»¸öÊ¶±ğ½á¹û
-//	LD_ASR_FOUNDZERO:	±íÊ¾Ò»´ÎÊ¶±ğÁ÷³Ì½áÊøºó£¬Ã»ÓĞÊ¶±ğ½á¹û
-//	LD_ASR_ERROR:			±íÊ¾Ò»´ÎÊ¶±ğÁ÷³ÌÖĞLD3320Ğ¾Æ¬ÄÚ²¿³öÏÖ²»ÕıÈ·µÄ×´Ì¬
-Ê×ÏÈ£º
+//	nAsrStatus ç”¨æ¥åœ¨mainä¸»ç¨‹åºä¸­è¡¨ç¤ºç¨‹åºè¿è¡Œçš„çŠ¶æ€ï¼Œä¸æ˜¯LD3320èŠ¯ç‰‡å†…éƒ¨çš„çŠ¶æ€å¯„å­˜å™¨
+//	LD_ASR_NONE:			è¡¨ç¤ºæ²¡æœ‰åœ¨ä½œASRè¯†åˆ«
+//	LD_ASR_RUNINGï¼š		è¡¨ç¤ºLD3320æ­£åœ¨ä½œASRè¯†åˆ«ä¸­
+//	LD_ASR_FOUNDOK:		è¡¨ç¤ºä¸€æ¬¡è¯†åˆ«æµç¨‹ç»“æŸåï¼Œæœ‰ä¸€ä¸ªè¯†åˆ«ç»“æœ
+//	LD_ASR_FOUNDZERO:	è¡¨ç¤ºä¸€æ¬¡è¯†åˆ«æµç¨‹ç»“æŸåï¼Œæ²¡æœ‰è¯†åˆ«ç»“æœ
+//	LD_ASR_ERROR:			è¡¨ç¤ºä¸€æ¬¡è¯†åˆ«æµç¨‹ä¸­LD3320èŠ¯ç‰‡å†…éƒ¨å‡ºç°ä¸æ­£ç¡®çš„çŠ¶æ€
+é¦–å…ˆï¼š
 LD3320
-SPI×ÜÏß
+SPIæ€»çº¿
  
-RST¡ªPB15£¬
-CS--PA4£¬
-IRQ¡ªPB12£¬
-WR¡ªPB13£¬
-MISO¡ªPA6£¬
-MOSI¡ªPA7£¬
-SCK¡ªPA5
+RSTâ€”PB15ï¼Œ
+CS--PA4ï¼Œ
+IRQâ€”PB12ï¼Œ
+WRâ€”PB13ï¼Œ
+MISOâ€”PA6ï¼Œ
+MOSIâ€”PA7ï¼Œ
+SCKâ€”PA5
 
 CS-PA4
 IRQ-PC8
@@ -30,7 +30,7 @@ RST-PC13
 
 *********************************************************************************/
 extern uint8_t nAsrStatus;	
-uint8_t nLD_Mode = LD_MODE_IDLE;//ÓÃÀ´¼ÇÂ¼µ±Ç°ÊÇÔÚ½øĞĞASRÊ¶±ğ»¹ÊÇÔÚ²¥·ÅMP3
+uint8_t nLD_Mode = LD_MODE_IDLE;//ç”¨æ¥è®°å½•å½“å‰æ˜¯åœ¨è¿›è¡ŒASRè¯†åˆ«è¿˜æ˜¯åœ¨æ’­æ”¾MP3
 uint8_t ucRegVal;
  
  
@@ -61,14 +61,14 @@ static void LD3320_EXTI_Cfg(void)
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(LD3320IRQ_GPIO_PORT, &GPIO_InitStructure);
-	//Íâ²¿ÖĞ¶ÏÏßÅäÖÃ
+	//å¤–éƒ¨ä¸­æ–­çº¿é…ç½®
 	SYSCFG_EXTILineConfig(LD3320IRQEXIT_PORTSOURCE, LD3320IRQPINSOURCE);
 	EXTI_InitStructure.EXTI_Line = LD3320IRQEXITLINE;
 	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
 	EXTI_InitStructure.EXTI_Trigger =EXTI_Trigger_Falling;
 	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
 	EXTI_Init(&EXTI_InitStructure);
-	//ÖĞ¶ÏÇ¶Ì×ÅäÖÃ
+	//ä¸­æ–­åµŒå¥—é…ç½®
   NVIC_InitStructure.NVIC_IRQChannel = LD3320IRQN;
   NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
@@ -79,7 +79,7 @@ static void LD3320_SPI_cfg(void)
 {
 	SPI_InitTypeDef  SPI_InitStructure;
 	GPIO_InitTypeDef GPIO_InitStructure;
-  //spi¶Ë¿ÚÅäÖÃ
+  //spiç«¯å£é…ç½®
 	RCC_APB2PeriphClockCmd(LD3320SPI_CLK,ENABLE);		
 	RCC_APB2PeriphClockCmd(LD3320WR_GPIO_CLK | LD3320SPIMISO_GPIO_CLK | LD3320SPIMOSI_GPIO_CLK | LD3320SPISCK_GPIO_CLK,ENABLE);
 	
@@ -106,21 +106,21 @@ static void LD3320_SPI_cfg(void)
 	
 	SPI_Cmd(LD3320SPI, DISABLE);
  
-	SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;   	//È«Ë«¹¤
-	SPI_InitStructure.SPI_Mode = SPI_Mode_Master;						   						//Ö÷Ä£Ê½
-	SPI_InitStructure.SPI_DataSize = SPI_DataSize_8b;					   					//8Î»
-	SPI_InitStructure.SPI_CPOL = SPI_CPOL_High;						   							//Ê±ÖÓ¼«ĞÔ ¿ÕÏĞ×´Ì¬Ê±£¬SCK±£³ÖµÍµçÆ½
-	SPI_InitStructure.SPI_CPHA = SPI_CPHA_1Edge;						   						//Ê±ÖÓÏàÎ» Êı¾İ²ÉÑù´ÓµÚÒ»¸öÊ±ÖÓ±ßÑØ¿ªÊ¼
-	SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;							   							//Èí¼ş²úÉúNSS
-	SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_64;   //²¨ÌØÂÊ¿ØÖÆ SYSCLK/128
-	SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;				   					//Êı¾İ¸ßÎ»ÔÚÇ°
-	SPI_InitStructure.SPI_CRCPolynomial = 7;							   							//CRC¶àÏîÊ½¼Ä´æÆ÷³õÊ¼ÖµÎª7
+	SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;   	//å…¨åŒå·¥
+	SPI_InitStructure.SPI_Mode = SPI_Mode_Master;						   						//ä¸»æ¨¡å¼
+	SPI_InitStructure.SPI_DataSize = SPI_DataSize_8b;					   					//8ä½
+	SPI_InitStructure.SPI_CPOL = SPI_CPOL_High;						   							//æ—¶é’Ÿææ€§ ç©ºé—²çŠ¶æ€æ—¶ï¼ŒSCKä¿æŒä½ç”µå¹³
+	SPI_InitStructure.SPI_CPHA = SPI_CPHA_1Edge;						   						//æ—¶é’Ÿç›¸ä½ æ•°æ®é‡‡æ ·ä»ç¬¬ä¸€ä¸ªæ—¶é’Ÿè¾¹æ²¿å¼€å§‹
+	SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;							   							//è½¯ä»¶äº§ç”ŸNSS
+	SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_64;   //æ³¢ç‰¹ç‡æ§åˆ¶ SYSCLK/128
+	SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;				   					//æ•°æ®é«˜ä½åœ¨å‰
+	SPI_InitStructure.SPI_CRCPolynomial = 7;							   							//CRCå¤šé¡¹å¼å¯„å­˜å™¨åˆå§‹å€¼ä¸º7
 	SPI_Init(LD3320SPI, &SPI_InitStructure);
  
 	SPI_Cmd(LD3320SPI, ENABLE);
 }
  
-///ÖĞ¼ä²ã
+///ä¸­é—´å±‚
 void EXTI15_10_IRQHandler(void)
 {
 	if(EXTI_GetITStatus(LD3320IRQEXITLINE)!= RESET ) 
@@ -128,7 +128,7 @@ void EXTI15_10_IRQHandler(void)
 		ProcessInt(); 
 	
 		EXTI_ClearFlag(LD3320IRQEXITLINE);
-		EXTI_ClearITPendingBit(LD3320IRQEXITLINE);//Çå³ıLINEÉÏµÄÖĞ¶Ï±êÖ¾Î»  
+		EXTI_ClearITPendingBit(LD3320IRQEXITLINE);//æ¸…é™¤LINEä¸Šçš„ä¸­æ–­æ ‡å¿—ä½  
 	} 
 }
 static void LD3320_delay(unsigned long uldata)
@@ -149,25 +149,25 @@ uint8_t RunASR(void)
 {
 	uint8_t i=0;
 	uint8_t asrflag=0;
-	for (i=0; i<5; i++)		//·ÀÖ¹ÓÉÓÚÓ²¼şÔ­Òòµ¼ÖÂLD3320Ğ¾Æ¬¹¤×÷²»Õı³££¬ËùÒÔÒ»¹²³¢ÊÔ5´ÎÆô¶¯ASRÊ¶±ğÁ÷³Ì
+	for (i=0; i<5; i++)		//é˜²æ­¢ç”±äºç¡¬ä»¶åŸå› å¯¼è‡´LD3320èŠ¯ç‰‡å·¥ä½œä¸æ­£å¸¸ï¼Œæ‰€ä»¥ä¸€å…±å°è¯•5æ¬¡å¯åŠ¨ASRè¯†åˆ«æµç¨‹
 	{
-		LD_AsrStart();			//³õÊ¼»¯ASR
+		LD_AsrStart();			//åˆå§‹åŒ–ASR
 		LD3320_delay(100);
-		if (LD_AsrAddFixed()==0)	//Ìí¼Ó¹Ø¼ü´ÊÓïµ½LD3320Ğ¾Æ¬ÖĞ
+		if (LD_AsrAddFixed()==0)	//æ·»åŠ å…³é”®è¯è¯­åˆ°LD3320èŠ¯ç‰‡ä¸­
 		{
-			LD_reset();				//LD3320Ğ¾Æ¬ÄÚ²¿³öÏÖ²»Õı³££¬Á¢¼´ÖØÆôLD3320Ğ¾Æ¬
-			LD3320_delay(50);	//²¢´Ó³õÊ¼»¯¿ªÊ¼ÖØĞÂASRÊ¶±ğÁ÷³Ì
+			LD_reset();				//LD3320èŠ¯ç‰‡å†…éƒ¨å‡ºç°ä¸æ­£å¸¸ï¼Œç«‹å³é‡å¯LD3320èŠ¯ç‰‡
+			LD3320_delay(50);	//å¹¶ä»åˆå§‹åŒ–å¼€å§‹é‡æ–°ASRè¯†åˆ«æµç¨‹
 			continue;
 		}
 		LD3320_delay(10);
 		if (LD_AsrRun() == 0)
 		{
-			LD_reset();			 //LD3320Ğ¾Æ¬ÄÚ²¿³öÏÖ²»Õı³££¬Á¢¼´ÖØÆôLD3320Ğ¾Æ¬
-			LD3320_delay(50);//²¢´Ó³õÊ¼»¯¿ªÊ¼ÖØĞÂASRÊ¶±ğÁ÷³Ì
+			LD_reset();			 //LD3320èŠ¯ç‰‡å†…éƒ¨å‡ºç°ä¸æ­£å¸¸ï¼Œç«‹å³é‡å¯LD3320èŠ¯ç‰‡
+			LD3320_delay(50);//å¹¶ä»åˆå§‹åŒ–å¼€å§‹é‡æ–°ASRè¯†åˆ«æµç¨‹
 			continue;
 		}
 		asrflag=1;
-		break;						//ASRÁ÷³ÌÆô¶¯³É¹¦£¬ÍË³öµ±Ç°forÑ­»·¡£¿ªÊ¼µÈ´ıLD3320ËÍ³öµÄÖĞ¶ÏĞÅºÅ
+		break;						//ASRæµç¨‹å¯åŠ¨æˆåŠŸï¼Œé€€å‡ºå½“å‰forå¾ªç¯ã€‚å¼€å§‹ç­‰å¾…LD3320é€å‡ºçš„ä¸­æ–­ä¿¡å·
 	}	
 	return asrflag;
 }
@@ -232,7 +232,7 @@ uint8_t LD_Check_ASRBusyFlag_b2(void)
 }
  
  
-///¼Ä´æÆ÷²Ù×÷
+///å¯„å­˜å™¨æ“ä½œ
 uint8_t spi_send_byte(uint8_t byte)
 {
 	while (SPI_I2S_GetFlagStatus(LD3320SPI, SPI_I2S_FLAG_TXE) == RESET);
@@ -298,8 +298,8 @@ void ProcessInt(void)
  
 	ucRegVal = LD_ReadReg(0x2B);
  
-// ÓïÒôÊ¶±ğ²úÉúµÄÖĞ¶Ï
-//£¨ÓĞÉùÒôÊäÈë£¬²»ÂÛÊ¶±ğ³É¹¦»òÊ§°Ü¶¼ÓĞÖĞ¶Ï£©
+// è¯­éŸ³è¯†åˆ«äº§ç”Ÿçš„ä¸­æ–­
+//ï¼ˆæœ‰å£°éŸ³è¾“å…¥ï¼Œä¸è®ºè¯†åˆ«æˆåŠŸæˆ–å¤±è´¥éƒ½æœ‰ä¸­æ–­ï¼‰
 	LD_WriteReg(0x29,0) ;
 	LD_WriteReg(0x02,0) ;
  
@@ -318,18 +318,18 @@ void ProcessInt(void)
 	}
 	else
 	{
-		nAsrStatus=LD_ASR_FOUNDZERO;//Ö´ĞĞÃ»ÓĞÊ¶±ğ
+		nAsrStatus=LD_ASR_FOUNDZERO;//æ‰§è¡Œæ²¡æœ‰è¯†åˆ«
 	}
  
 	LD_WriteReg(0x2b,0);
-	LD_WriteReg(0x1C,0);//Ğ´0:ADC²»¿ÉÓÃ
+	LD_WriteReg(0x1C,0);//å†™0:ADCä¸å¯ç”¨
 	LD_WriteReg(0x29,0);
 	LD_WriteReg(0x02,0);
 	LD_WriteReg(0x2B,0);
 	LD_WriteReg(0xBA,0);	
 	LD_WriteReg(0xBC,0);	
-	LD_WriteReg(0x08,1);//Çå³ıFIFO_DATA
-	LD_WriteReg(0x08,0);//Çå³ıFIFO_DATAºó ÔÙ´ÎĞ´0
+	LD_WriteReg(0x08,1);//æ¸…é™¤FIFO_DATA
+	LD_WriteReg(0x08,0);//æ¸…é™¤FIFO_DATAå å†æ¬¡å†™0
 }
  
 void LD_Init_Common(void)
@@ -390,7 +390,7 @@ void LD_Init_ASR(void)
 	LD3320_delay( 1 );
 }
  
-///Ïà¹Ø³õÊ¼»¯
+///ç›¸å…³åˆå§‹åŒ–
 void LD3320_init(void)
 {
 	LD3320_GPIO_Cfg();	
@@ -402,9 +402,9 @@ static uint8_t LD_AsrAddFixed(void)
 {
 	uint8_t k, flag;
 	uint8_t nAsrAddLength;
-	#define DATE_A 20    //Êı×é¶şÎ¬ÊıÖµ
-	#define DATE_B 50		//Êı×éÒ»Î¬ÊıÖµ
-	//Ìí¼Ó¹Ø¼ü´Ê£¬ÓÃ»§ĞŞ¸Ä
+	#define DATE_A 20    //æ•°ç»„äºŒç»´æ•°å€¼
+	#define DATE_B 50		//æ•°ç»„ä¸€ç»´æ•°å€¼
+	//æ·»åŠ å…³é”®è¯ï¼Œç”¨æˆ·ä¿®æ”¹
 	uint8_t  sRecog[DATE_A][DATE_B] = { 
 	 			"tian qi zen me yang",\
 				"ni jiao shen me",\
@@ -438,7 +438,7 @@ static uint8_t LD_AsrAddFixed(void)
 																voice_J_0,		\
 																voice_J_1,		\
 																LDE_All_OFF		\
-															};	//Ìí¼ÓÊ¶±ğÂë£¬ÓÃ»§ĞŞ¸Ä
+															};	//æ·»åŠ è¯†åˆ«ç ï¼Œç”¨æˆ·ä¿®æ”¹
 	flag = 1;
 	for (k=0; k<DATE_A; k++)
 	{			
@@ -469,4 +469,4 @@ static uint8_t LD_AsrAddFixed(void)
 }
  
  
-//ÓÃ»§ĞŞ¸Ä
+//ç”¨æˆ·ä¿®æ”¹
