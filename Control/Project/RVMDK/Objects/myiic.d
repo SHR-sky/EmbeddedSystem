@@ -43,3 +43,4 @@
 .\objects\myiic.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\myiic.o: ..\..\Hardware\Delay.h
 .\objects\myiic.o: ..\..\Hardware\LD3320.h
+.\objects\myiic.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

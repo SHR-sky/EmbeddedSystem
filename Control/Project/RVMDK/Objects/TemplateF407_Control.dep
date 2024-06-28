@@ -1615,7 +1615,8 @@ I (..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fsmc.h)(0x667CD195)
 I (..\..\Hardware\TIM.h)(0x667CD195)
 I (..\..\Hardware\DHT11.h)(0x667CD195)
 I (..\..\Hardware\Delay.h)(0x667CD195)
-I (..\..\Hardware\LD3320.h)(0x667CE4E9)
+I (..\..\Hardware\LD3320.h)(0x667E0EF7)
+I (E:\SoftLib\Keil_v5\ARM\ARMCC\include\string.h)(0x6025237E)
 I (E:\SoftLib\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x60252376)
 F (..\..\Hardware\Serial.h)(0x667CD195)()
 F (..\..\Hardware\TIM.c)(0x667CD195)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\Libraries\CMSIS\Include -I ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I ..\..\User -I ..\..\Hardware -I ..\..\FreeRTOS -I ..\..\FreeRTOS\include -I ..\..\FreeRTOS\port -I ..\..\FreeRTOS\port\MemMang-IE:\SoftLib\Keil_Arm_pack\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DUSE_STM324xG_EVAL-o .\objects\tim.o --omf_browse .\objects\tim.crf --depend .\objects\tim.d)
@@ -1659,7 +1660,8 @@ I (..\..\Hardware\DHT11.h)(0x667CD195)
 I (..\..\Hardware\Serial.h)(0x667CD195)
 I (E:\SoftLib\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (..\..\Hardware\Delay.h)(0x667CD195)
-I (..\..\Hardware\LD3320.h)(0x667CE4E9)
+I (..\..\Hardware\LD3320.h)(0x667E0EF7)
+I (E:\SoftLib\Keil_v5\ARM\ARMCC\include\string.h)(0x6025237E)
 F (..\..\Hardware\TIM.h)(0x667CD195)()
 F (..\..\Hardware\Delay.c)(0x667CD195)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\Libraries\CMSIS\Include -I ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I ..\..\User -I ..\..\Hardware -I ..\..\FreeRTOS -I ..\..\FreeRTOS\include -I ..\..\FreeRTOS\port -I ..\..\FreeRTOS\port\MemMang-IE:\SoftLib\Keil_Arm_pack\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DUSE_STM324xG_EVAL-o .\objects\delay.o --omf_browse .\objects\delay.crf --depend .\objects\delay.d)
 I (..\..\Hardware\Delay.h)(0x667CD195)
@@ -1702,7 +1704,8 @@ I (..\..\Hardware\TIM.h)(0x667CD195)
 I (..\..\Hardware\DHT11.h)(0x667CD195)
 I (..\..\Hardware\Serial.h)(0x667CD195)
 I (E:\SoftLib\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
-I (..\..\Hardware\LD3320.h)(0x667CE4E9)
+I (..\..\Hardware\LD3320.h)(0x667E0EF7)
+I (E:\SoftLib\Keil_v5\ARM\ARMCC\include\string.h)(0x6025237E)
 F (..\..\Hardware\Delay.h)(0x667CD195)()
 F (..\..\Hardware\DHT11.c)(0x667CD195)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\Libraries\CMSIS\Include -I ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I ..\..\User -I ..\..\Hardware -I ..\..\FreeRTOS -I ..\..\FreeRTOS\include -I ..\..\FreeRTOS\port -I ..\..\FreeRTOS\port\MemMang-IE:\SoftLib\Keil_Arm_pack\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DUSE_STM324xG_EVAL-o .\objects\dht11.o --omf_browse .\objects\dht11.crf --depend .\objects\dht11.d)
 I (..\..\Hardware\DHT11.h)(0x667CD195)
@@ -1745,7 +1748,8 @@ I (..\..\Hardware\TIM.h)(0x667CD195)
 I (..\..\Hardware\Serial.h)(0x667CD195)
 I (E:\SoftLib\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (..\..\Hardware\Delay.h)(0x667CD195)
-I (..\..\Hardware\LD3320.h)(0x667CE4E9)
+I (..\..\Hardware\LD3320.h)(0x667E0EF7)
+I (E:\SoftLib\Keil_v5\ARM\ARMCC\include\string.h)(0x6025237E)
 F (..\..\Hardware\DHT11.h)(0x667CD195)()
 F (..\..\Hardware\HC_SR04.c)(0x667CD195)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\Libraries\CMSIS\Include -I ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I ..\..\User -I ..\..\Hardware -I ..\..\FreeRTOS -I ..\..\FreeRTOS\include -I ..\..\FreeRTOS\port -I ..\..\FreeRTOS\port\MemMang-IE:\SoftLib\Keil_Arm_pack\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DUSE_STM324xG_EVAL-o .\objects\hc_sr04.o --omf_browse .\objects\hc_sr04.crf --depend .\objects\hc_sr04.d)
 I (..\..\Hardware\HC_SR04.h)(0x667CD195)
@@ -1789,7 +1793,8 @@ I (..\..\Hardware\DHT11.h)(0x667CD195)
 I (..\..\Hardware\Serial.h)(0x667CD195)
 I (E:\SoftLib\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (..\..\Hardware\Delay.h)(0x667CD195)
-I (..\..\Hardware\LD3320.h)(0x667CE4E9)
+I (..\..\Hardware\LD3320.h)(0x667E0EF7)
+I (E:\SoftLib\Keil_v5\ARM\ARMCC\include\string.h)(0x6025237E)
 F (..\..\Hardware\HC_SR04.h)(0x667CD195)()
 F (..\..\Hardware\sys.h)(0x667CE294)()
 F (..\..\Hardware\myiic.c)(0x667CD195)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\Libraries\CMSIS\Include -I ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I ..\..\User -I ..\..\Hardware -I ..\..\FreeRTOS -I ..\..\FreeRTOS\include -I ..\..\FreeRTOS\port -I ..\..\FreeRTOS\port\MemMang-IE:\SoftLib\Keil_Arm_pack\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DUSE_STM324xG_EVAL-o .\objects\myiic.o --omf_browse .\objects\myiic.crf --depend .\objects\myiic.d)
@@ -1834,7 +1839,8 @@ I (..\..\Hardware\DHT11.h)(0x667CD195)
 I (..\..\Hardware\Serial.h)(0x667CD195)
 I (E:\SoftLib\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (..\..\Hardware\Delay.h)(0x667CD195)
-I (..\..\Hardware\LD3320.h)(0x667CE4E9)
+I (..\..\Hardware\LD3320.h)(0x667E0EF7)
+I (E:\SoftLib\Keil_v5\ARM\ARMCC\include\string.h)(0x6025237E)
 F (..\..\Hardware\myiic.h)(0x667CD195)()
 F (..\..\Hardware\beep.c)(0x667CD195)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\Libraries\CMSIS\Include -I ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I ..\..\User -I ..\..\Hardware -I ..\..\FreeRTOS -I ..\..\FreeRTOS\include -I ..\..\FreeRTOS\port -I ..\..\FreeRTOS\port\MemMang-IE:\SoftLib\Keil_Arm_pack\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DUSE_STM324xG_EVAL-o .\objects\beep.o --omf_browse .\objects\beep.crf --depend .\objects\beep.d)
 I (..\..\Hardware\beep.h)(0x667CD195)
@@ -1878,7 +1884,8 @@ I (..\..\Hardware\DHT11.h)(0x667CD195)
 I (..\..\Hardware\Serial.h)(0x667CD195)
 I (E:\SoftLib\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (..\..\Hardware\Delay.h)(0x667CD195)
-I (..\..\Hardware\LD3320.h)(0x667CE4E9)
+I (..\..\Hardware\LD3320.h)(0x667E0EF7)
+I (E:\SoftLib\Keil_v5\ARM\ARMCC\include\string.h)(0x6025237E)
 F (..\..\Hardware\beep.h)(0x667CD195)()
 F (..\..\Hardware\DS1302.c)(0x667CD195)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\Libraries\CMSIS\Include -I ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I ..\..\User -I ..\..\Hardware -I ..\..\FreeRTOS -I ..\..\FreeRTOS\include -I ..\..\FreeRTOS\port -I ..\..\FreeRTOS\port\MemMang-IE:\SoftLib\Keil_Arm_pack\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DUSE_STM324xG_EVAL-o .\objects\ds1302.o --omf_browse .\objects\ds1302.crf --depend .\objects\ds1302.d)
 I (..\..\Hardware\DS1302.h)(0x667CD195)
@@ -1922,10 +1929,11 @@ I (..\..\Hardware\DHT11.h)(0x667CD195)
 I (..\..\Hardware\Serial.h)(0x667CD195)
 I (E:\SoftLib\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (..\..\Hardware\Delay.h)(0x667CD195)
-I (..\..\Hardware\LD3320.h)(0x667CE4E9)
+I (..\..\Hardware\LD3320.h)(0x667E0EF7)
+I (E:\SoftLib\Keil_v5\ARM\ARMCC\include\string.h)(0x6025237E)
 F (..\..\Hardware\DS1302.h)(0x667CD195)()
-F (..\..\Hardware\LD3320.c)(0x667CE25E)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\Libraries\CMSIS\Include -I ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I ..\..\User -I ..\..\Hardware -I ..\..\FreeRTOS -I ..\..\FreeRTOS\include -I ..\..\FreeRTOS\port -I ..\..\FreeRTOS\port\MemMang-IE:\SoftLib\Keil_Arm_pack\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DUSE_STM324xG_EVAL-o .\objects\ld3320.o --omf_browse .\objects\ld3320.crf --depend .\objects\ld3320.d)
-I (..\..\Hardware\LD3320.h)(0x667CE4E9)
+F (..\..\Hardware\LD3320.c)(0x667E0EF7)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\Libraries\CMSIS\Include -I ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I ..\..\User -I ..\..\Hardware -I ..\..\FreeRTOS -I ..\..\FreeRTOS\include -I ..\..\FreeRTOS\port -I ..\..\FreeRTOS\port\MemMang-IE:\SoftLib\Keil_Arm_pack\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DUSE_STM324xG_EVAL-o .\objects\ld3320.o --omf_browse .\objects\ld3320.crf --depend .\objects\ld3320.d)
+I (..\..\Hardware\LD3320.h)(0x667E0EF7)
 I (..\..\Hardware\sys.h)(0x667CE294)
 I (..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x667CD195)
 I (..\..\Libraries\CMSIS\Include\core_cm4.h)(0x667CD195)
@@ -1967,8 +1975,8 @@ I (..\..\Hardware\Serial.h)(0x667CD195)
 I (E:\SoftLib\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (..\..\Hardware\Delay.h)(0x667CD195)
 I (E:\SoftLib\Keil_v5\ARM\ARMCC\include\string.h)(0x6025237E)
-F (..\..\Hardware\LD3320.h)(0x667CE4E9)()
-F (..\..\User\main.c)(0x667CE3C0)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\Libraries\CMSIS\Include -I ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I ..\..\User -I ..\..\Hardware -I ..\..\FreeRTOS -I ..\..\FreeRTOS\include -I ..\..\FreeRTOS\port -I ..\..\FreeRTOS\port\MemMang-IE:\SoftLib\Keil_Arm_pack\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DUSE_STM324xG_EVAL-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (..\..\Hardware\LD3320.h)(0x667E0EF7)()
+F (..\..\User\main.c)(0x667E278D)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\Libraries\CMSIS\Include -I ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I ..\..\User -I ..\..\Hardware -I ..\..\FreeRTOS -I ..\..\FreeRTOS\include -I ..\..\FreeRTOS\port -I ..\..\FreeRTOS\port\MemMang-IE:\SoftLib\Keil_Arm_pack\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="538" -DSTM32F407xx -DUSE_STDPERIPH_DRIVER -DUSE_STM324xG_EVAL-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (..\..\Hardware\sys.h)(0x667CE294)
 I (..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x667CD195)
 I (..\..\Libraries\CMSIS\Include\core_cm4.h)(0x667CD195)
@@ -2009,7 +2017,8 @@ I (..\..\Hardware\DHT11.h)(0x667CD195)
 I (..\..\Hardware\Serial.h)(0x667CD195)
 I (E:\SoftLib\Keil_v5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (..\..\Hardware\Delay.h)(0x667CD195)
-I (..\..\Hardware\LD3320.h)(0x667CE4E9)
+I (..\..\Hardware\LD3320.h)(0x667E0EF7)
+I (E:\SoftLib\Keil_v5\ARM\ARMCC\include\string.h)(0x6025237E)
 I (..\..\FreeRTOS\include\FreeRTOS.h)(0x667CD195)
 I (E:\SoftLib\Keil_v5\ARM\ARMCC\include\stddef.h)(0x6025237E)
 I (..\..\FreeRTOS\include\FreeRTOSConfig.h)(0x667CD195)

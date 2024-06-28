@@ -43,3 +43,4 @@
 .\objects\delay.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\delay.o: ..\..\Hardware\Delay.h
 .\objects\delay.o: ..\..\Hardware\LD3320.h
+.\objects\delay.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
