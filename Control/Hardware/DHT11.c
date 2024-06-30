@@ -2,16 +2,16 @@
 
 uint8_t dat[4]; // 接收数据
 
-// 数据输入输出为PB8
+// 数据输入输出为PC13
 void Data_Out_Init(void)
 {
 	GPIO_InitTypeDef GPIO_Structure;
 
-	RCC_APB2PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
 
 	GPIO_Structure.GPIO_Mode = GPIO_Mode_OUT;
 	GPIO_Structure.GPIO_OType = GPIO_OType_PP;
-	GPIO_Structure.GPIO_Pin = GPIO_Pin_8;
+	GPIO_Structure.GPIO_Pin = GPIO_Pin_13;
 	GPIO_Structure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOB, &GPIO_Structure);
 }
@@ -20,13 +20,13 @@ void Data_In_Init(void)
 {
 	GPIO_InitTypeDef GPIO_Structure;
 
-	RCC_APB2PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
 
 	GPIO_Structure.GPIO_Mode = GPIO_Mode_IN;
-	GPIO_Structure.GPIO_Pin = GPIO_Pin_8;
+	GPIO_Structure.GPIO_Pin = GPIO_Pin_13;
 	GPIO_Structure.GPIO_Speed = GPIO_Speed_50MHz;
 
-	GPIO_Init(GPIOB, &GPIO_Structure);
+	GPIO_Init(GPIOC, &GPIO_Structure);
 }
 
 /*
@@ -41,11 +41,11 @@ void Data_In_Init(void)
 void tDHT11_start(void)
 {
 	Data_Out_Init();
-	GPIO_SetBits(GPIOB, GPIO_Pin_8);
+	GPIO_SetBits(GPIOC, GPIO_Pin_13);
 	delay_us(1);
-	GPIO_ResetBits(GPIOB, GPIO_Pin_8);
+	GPIO_ResetBits(GPIOC, GPIO_Pin_13);
 	delay_ms(20); // 拉低18ms以上  20ms
-	GPIO_SetBits(GPIOB, GPIO_Pin_8);
+	GPIO_SetBits(GPIOC, GPIO_Pin_13);
 	delay_us(30); // 拉高20ms-40ms
 	Data_In_Init();
 	delay_us(10);
@@ -56,14 +56,14 @@ uint8_t tDHT11_rec_byte(void) // 接收一个字节
 	uint8_t i, dat = 0;
 	for (i = 0; i < 8; i++) // 从高到低依次接收8位数据
 	{
-		while (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_8) == 0); // 等待50us低电平过去
+		while (GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_13) == 0); // 等待50us低电平过去
 		delay_us(40);									   // 延时40us，如果还为高则数据为1，否则为0
 		dat <<= 1;										   // 移位使正确接收8位数据，数据为0时直接移位
-		if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_8) == 1) // 数据为1时，使dat加1来接收数据1
+		if (GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_13) == 1) // 数据为1时，使dat加1来接收数据1
 		{
 			dat += 1;
 		}
-		while (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_8) == 1); // 等待数据线拉低
+		while (GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_13) == 1); // 等待数据线拉低
 	}
 	return dat;
 }
@@ -72,12 +72,12 @@ void tDHT11_rec_data(uint8_t *temp, uint8_t *dec) // 接收40位的数据
 {
 	uint8_t R_H, R_L, T_H, T_L, revise;
 	tDHT11_start();
-	if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_8) == 0)
+	if (GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_13) == 0)
 	{
 
-		while (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_8) == 0); // 处理响应低电平，等待拉高
+		while (GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_13) == 0); // 处理响应低电平，等待拉高
 
-		while (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_8) == 1); // 处理响应高电平，等待拉低
+		while (GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_13) == 1); // 处理响应高电平，等待拉低
 
 		R_H = tDHT11_rec_byte();	// 接收湿度高八位
 		R_L = tDHT11_rec_byte();	// 接收湿度低八位
@@ -85,7 +85,7 @@ void tDHT11_rec_data(uint8_t *temp, uint8_t *dec) // 接收40位的数据
 		T_L = tDHT11_rec_byte();	// 接收温度低八位
 		revise = tDHT11_rec_byte(); // 接收校正位
 
-		while (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_8) == 0); // 等待从机拉低
+		while (GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_13) == 0); // 等待从机拉低
 
 		if ((R_H + R_L + T_H + T_L) == revise) // 校正
 		{
