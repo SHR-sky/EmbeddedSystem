@@ -9,16 +9,15 @@ static void PosDetection(void);
 // 与EPS32进行通信，获取信息
 static void ESP32Commute(void); // 通信主函数
 // 时钟显示主函数，显示时间
-static void ClockDisplay(void); 
+static void ClockDisplay(void);
 // 播放音乐主函数 ，做到允许暂停播放,停止播放（通过语音控制）
-static void PlayMusic(void); 
+static void PlayMusic(void);
 
 static TaskHandle_t LD3320App_Handle = NULL;
 static TaskHandle_t PosDetectionApp_Handle = NULL;
 static TaskHandle_t ESP32CommuteApp_Handle = NULL;
 static TaskHandle_t ClockDisplayApp_Handle = NULL;
 static TaskHandle_t PlayMusicApp_Handle = NULL;
-
 
 uint8_t temperature, dec;
 uint8_t nAsrStatus;
