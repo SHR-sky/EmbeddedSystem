@@ -38,7 +38,7 @@ int main(void)
 	Serial_Init();
 	// LD3320_main();
 	Serial_Printf("Init Finish1!");
-	xTaskCreate(ESP32Commute, "ESP32Commute", 512, NULL, 2, &ESP32CommuteApp_Handle);
+	xTaskCreate((TaskFunction_t )ESP32Commute, "ESP32Commute", 512, NULL, 2, &ESP32CommuteApp_Handle);
 	vTaskStartScheduler();
 	while (1);
 	// 创建多线程
