@@ -44,3 +44,4 @@
 .\objects\hc_sr04.o: ..\..\Hardware\Delay.h
 .\objects\hc_sr04.o: ..\..\Hardware\LD3320.h
 .\objects\hc_sr04.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\hc_sr04.o: ..\..\Hardware\HC_SR04.h

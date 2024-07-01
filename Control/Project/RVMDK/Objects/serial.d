@@ -44,4 +44,5 @@
 .\objects\serial.o: ..\..\Hardware\Delay.h
 .\objects\serial.o: ..\..\Hardware\LD3320.h
 .\objects\serial.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\serial.o: ..\..\Hardware\HC_SR04.h
 .\objects\serial.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h

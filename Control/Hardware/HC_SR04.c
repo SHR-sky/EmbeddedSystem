@@ -80,7 +80,7 @@ void TIM4_IRQHandler(void)
  
  
  
-  u32 GetEchoTimer(void)
+u32 GetEchoTimer(void)
 {
     u32 t = 0;
     t = msHcCount*1000;
@@ -90,7 +90,7 @@ void TIM4_IRQHandler(void)
     return t;
 }
  
-  float HC_Get(void )
+float HC_Get(void)
 {
     int t = 0;
     int i = 0;

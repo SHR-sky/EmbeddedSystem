@@ -8,6 +8,7 @@
 #include "Serial.h"
 #include "Delay.h"
 #include "LD3320.h"
+#include "HC_SR04.h"
 
 /********************************************************************/
 																    

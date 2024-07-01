@@ -43,6 +43,7 @@
 .\objects\main.o: ..\..\Hardware\Delay.h
 .\objects\main.o: ..\..\Hardware\LD3320.h
 .\objects\main.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\main.o: ..\..\Hardware\HC_SR04.h
 .\objects\main.o: ..\..\FreeRTOS\include\FreeRTOS.h
 .\objects\main.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\main.o: ..\..\FreeRTOS\include\FreeRTOSConfig.h

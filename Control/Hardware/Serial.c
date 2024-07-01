@@ -62,13 +62,15 @@ void Serial_Init(void)
 
 	USART_Cmd(USART2, ENABLE);
 
+	// USART3
+	// ---------------------------------------------------------------------------
 	// 接收ESP32数据
 	NVIC_InitTypeDef NVIC_InitStructure;
 	GPIO_InitTypeDef GPIO_InitStructure;
 	USART_InitTypeDef USART_InitStructure;
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
 	RCC_APB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
-	RCC_APB1PeriphClockCmd(RCC_AHB1Periph_DMA1, ENABLE); // 使能DMA传输
+	//RCC_APB1PeriphClockCmd(RCC_AHB1Periph_DMA1, ENABLE); // 使能DMA传输
 	// USART3_TX   GPIOB.10
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
@@ -77,7 +79,7 @@ void Serial_Init(void)
 
 	// USART3_RX	  GPIOB.11初始化
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_Init(GPIOB, &GPIO_InitStructure);
 
 	// 配置波特率
@@ -187,11 +189,13 @@ void USART3_IRQHandler(void)
 		Res = USART_ReceiveData(USART3); // 读取接收到的数据
 		if (Res == 0x23)
 			printf("PC");
+		USART_ClearITPendingBit(USART3, USART_IT_RXNE);
 	}
-	else if (USART_GetITStatus(USART3, USART_IT_IDLE) != RESET) // 接收中断
+	else if (USART_GetITStatus(USART3, USART_IT_IDLE) != RESET) // 空闲线路检测 接收中断
 	{
-		USART3->SR; // 先读SR寄存器
-		USART3->DR; // 再读DR寄存器
+		//USART3->SR; // 先读SR寄存器
+		//USART3->DR; // 再读DR寄存器
 		printf("Receive a frame data. ");
+		USART_ClearITPendingBit(USART3, USART_IT_IDLE);
 	}
 }
