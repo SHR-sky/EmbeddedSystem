@@ -6,6 +6,7 @@
 void Data_Out_Init(void);
 void Data_In_Init(void);
 void tDHT11_start(void);
+void tDHT11_start2(void);
 uint8_t tDHT11_rec_byte(void);
 void tDHT11_rec_data(uint8_t *temp,uint8_t *dec) ;//温度，湿度
 

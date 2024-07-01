@@ -3,6 +3,9 @@
  
 #include "sys.h" 
  
+// CLK - PC12
+// DAT - PC10
+ 
 #define CE_L GPIO_ResetBits(GPIOC,GPIO_Pin_11)//拉低使能位
 #define CE_H GPIO_SetBits(GPIOC,GPIO_Pin_11)//拉高使能位
 #define SCLK_L GPIO_ResetBits(GPIOC,GPIO_Pin_12)//拉低时钟线
@@ -11,7 +14,7 @@
 #define DATA_H  GPIO_SetBits(GPIOC,GPIO_Pin_10)//拉高数据线
  
 struct TIMEData
-{
+{	
 	uint16_t year;
 	uint8_t  month;
 	uint8_t  day;
@@ -31,5 +34,6 @@ void ds1032_DATAOUT_init(void);//IO端口配置为输出
 void ds1032_DATAINPUT_init(void);//IO端口配置为输入
 void ds1032_read_time(void);//从ds1302读取实时时间（BCD码）
 void ds1032_read_realTime(void);//将BCD码转化为十进制数据
+void ds1032_TotalInit(void);
  
 #endif

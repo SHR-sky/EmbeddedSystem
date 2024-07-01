@@ -914,14 +914,29 @@
               <FilePath>..\..\Hardware\DS1302.h</FilePath>
             </File>
             <File>
-              <FileName>LD3320.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Hardware\LD3320.c</FilePath>
+              <FileName>intrins.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\Hardware\intrins.h</FilePath>
             </File>
             <File>
-              <FileName>LD3320.h</FileName>
+              <FileName>LDChip.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Hardware\LDChip.c</FilePath>
+            </File>
+            <File>
+              <FileName>LDChip.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\Hardware\LD3320.h</FilePath>
+              <FilePath>..\..\Hardware\LDChip.h</FilePath>
+            </File>
+            <File>
+              <FileName>Reg_RW.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Hardware\Reg_RW.c</FilePath>
+            </File>
+            <File>
+              <FileName>Reg_RW.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\Hardware\Reg_RW.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -41,9 +41,10 @@
 .\objects\main.o: ..\..\Hardware\Serial.h
 .\objects\main.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\main.o: ..\..\Hardware\Delay.h
-.\objects\main.o: ..\..\Hardware\LD3320.h
-.\objects\main.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\main.o: ..\..\Hardware\Reg_RW.h
+.\objects\main.o: ..\..\Hardware\LDChip.h
 .\objects\main.o: ..\..\Hardware\HC_SR04.h
+.\objects\main.o: ..\..\Hardware\DS1302.h
 .\objects\main.o: ..\..\FreeRTOS\inc\FreeRTOS.h
 .\objects\main.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\main.o: ..\..\FreeRTOS\FreeRTOSConfig.h
@@ -54,3 +55,4 @@
 .\objects\main.o: ..\..\FreeRTOS\inc\mpu_wrappers.h
 .\objects\main.o: ..\..\FreeRTOS\inc\task.h
 .\objects\main.o: ..\..\FreeRTOS\inc\list.h
+.\objects\main.o: ..\..\FreeRTOS\inc\timers.h
