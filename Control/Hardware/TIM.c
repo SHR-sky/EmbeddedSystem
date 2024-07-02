@@ -1,12 +1,12 @@
-// TIM4
+// TIM2
 #include "TIM.h"
 
 #define ARR_NUM 10000
 #define PSC_NUM 84
 
-void Timer_Init(void)
+void TIM_Init(void)
 {
-
+	/*
 	// Input Capture
 	// PB6 ~PB9 -> TIM4CH1~CH4
 	GPIO_InitTypeDef GPIO_InitStructure;
@@ -19,8 +19,9 @@ void Timer_Init(void)
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9;
 	GPIO_Init(GPIOB, &GPIO_InitStructure);
+	*/
 
-
+	/*
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE); // 开启时钟
 
 	TIM_InternalClockConfig(TIM2);
@@ -44,6 +45,50 @@ void Timer_Init(void)
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2; // 优先级
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;		  // 相应优先级
 	NVIC_Init(&NVIC_InitStructure);
+	*/
 
-	TIM_Cmd(TIM2, ENABLE);
+	//TIM_Cmd(TIM2, ENABLE);
+	NVIC_InitTypeDef NVIC_InitStructure;
+	// -------------------------------
+	// TIM 3 定时1s自动中断
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);   
+	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;  
+    TIM_TimeBaseStructure.TIM_Period = (10000-1); 
+    TIM_TimeBaseStructure.TIM_Prescaler =(8400-1); 
+    TIM_TimeBaseStructure.TIM_ClockDivision=TIM_CKD_DIV1;
+    TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;  
+    TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);          
+ 
+    TIM_ClearFlag(TIM2, TIM_FLAG_Update);  
+    TIM_ITConfig(TIM2,TIM_IT_Update,ENABLE);    
+ 
+    //NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+ 
+    NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;             
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;  
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;         
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;       
+    NVIC_Init(&NVIC_InitStructure);
+	TIM_Cmd(TIM2,ENABLE); 
+	
+	// -----------------------------------------------
+	// TIM 5 定时10s自动中断
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM5, ENABLE);   
+    TIM_TimeBaseStructure.TIM_Period = (100000-1); 
+    TIM_TimeBaseStructure.TIM_Prescaler =(8400-1); 
+    TIM_TimeBaseStructure.TIM_ClockDivision=TIM_CKD_DIV1;
+    TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;  
+    TIM_TimeBaseInit(TIM5, &TIM_TimeBaseStructure);          
+ 
+    TIM_ClearFlag(TIM5, TIM_FLAG_Update);  
+    TIM_ITConfig(TIM5,TIM_IT_Update,ENABLE);    
+ 
+    //NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+ 
+    NVIC_InitStructure.NVIC_IRQChannel = TIM5_IRQn;             
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;  
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;         
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;       
+    NVIC_Init(&NVIC_InitStructure);
+	//TIM_Cmd(TIM5,ENABLE); 	
 }

@@ -46,14 +46,3 @@
 .\objects\ldchip.o: ..\..\Hardware\LDChip.h
 .\objects\ldchip.o: ..\..\Hardware\HC_SR04.h
 .\objects\ldchip.o: ..\..\Hardware\DS1302.h
-.\objects\ldchip.o: ..\..\FreeRTOS\inc\FreeRTOS.h
-.\objects\ldchip.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\ldchip.o: ..\..\FreeRTOS\FreeRTOSConfig.h
-.\objects\ldchip.o: ..\..\FreeRTOS\inc\projdefs.h
-.\objects\ldchip.o: ..\..\FreeRTOS\inc\portable.h
-.\objects\ldchip.o: ..\..\FreeRTOS\inc\deprecated_definitions.h
-.\objects\ldchip.o: ..\..\FreeRTOS\port\portmacro.h
-.\objects\ldchip.o: ..\..\FreeRTOS\inc\mpu_wrappers.h
-.\objects\ldchip.o: ..\..\FreeRTOS\inc\task.h
-.\objects\ldchip.o: ..\..\FreeRTOS\inc\list.h
-.\objects\ldchip.o: ..\..\FreeRTOS\inc\timers.h

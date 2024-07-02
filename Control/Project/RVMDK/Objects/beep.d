@@ -46,14 +46,3 @@
 .\objects\beep.o: ..\..\Hardware\LDChip.h
 .\objects\beep.o: ..\..\Hardware\HC_SR04.h
 .\objects\beep.o: ..\..\Hardware\DS1302.h
-.\objects\beep.o: ..\..\FreeRTOS\inc\FreeRTOS.h
-.\objects\beep.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\beep.o: ..\..\FreeRTOS\FreeRTOSConfig.h
-.\objects\beep.o: ..\..\FreeRTOS\inc\projdefs.h
-.\objects\beep.o: ..\..\FreeRTOS\inc\portable.h
-.\objects\beep.o: ..\..\FreeRTOS\inc\deprecated_definitions.h
-.\objects\beep.o: ..\..\FreeRTOS\port\portmacro.h
-.\objects\beep.o: ..\..\FreeRTOS\inc\mpu_wrappers.h
-.\objects\beep.o: ..\..\FreeRTOS\inc\task.h
-.\objects\beep.o: ..\..\FreeRTOS\inc\list.h
-.\objects\beep.o: ..\..\FreeRTOS\inc\timers.h

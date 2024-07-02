@@ -2,8 +2,8 @@
 #define _HC_SR04_H    
 #include "sys.h"
 
-#define TRIG_Send  PBout(11)
-#define ECHO_Reci  PBin(10)
+#define TRIG_Send  PDout(0)
+#define ECHO_Reci  PDin(1)
  
 void HC_Init(void);
 static void OpenTimerForHc(void);

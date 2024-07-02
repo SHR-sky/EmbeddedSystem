@@ -46,14 +46,3 @@
 .\objects\dht11.o: ..\..\Hardware\LDChip.h
 .\objects\dht11.o: ..\..\Hardware\HC_SR04.h
 .\objects\dht11.o: ..\..\Hardware\DS1302.h
-.\objects\dht11.o: ..\..\FreeRTOS\inc\FreeRTOS.h
-.\objects\dht11.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\dht11.o: ..\..\FreeRTOS\FreeRTOSConfig.h
-.\objects\dht11.o: ..\..\FreeRTOS\inc\projdefs.h
-.\objects\dht11.o: ..\..\FreeRTOS\inc\portable.h
-.\objects\dht11.o: ..\..\FreeRTOS\inc\deprecated_definitions.h
-.\objects\dht11.o: ..\..\FreeRTOS\port\portmacro.h
-.\objects\dht11.o: ..\..\FreeRTOS\inc\mpu_wrappers.h
-.\objects\dht11.o: ..\..\FreeRTOS\inc\task.h
-.\objects\dht11.o: ..\..\FreeRTOS\inc\list.h
-.\objects\dht11.o: ..\..\FreeRTOS\inc\timers.h

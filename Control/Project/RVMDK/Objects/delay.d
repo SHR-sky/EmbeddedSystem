@@ -46,14 +46,3 @@
 .\objects\delay.o: ..\..\Hardware\LDChip.h
 .\objects\delay.o: ..\..\Hardware\HC_SR04.h
 .\objects\delay.o: ..\..\Hardware\DS1302.h
-.\objects\delay.o: ..\..\FreeRTOS\inc\FreeRTOS.h
-.\objects\delay.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\delay.o: ..\..\FreeRTOS\FreeRTOSConfig.h
-.\objects\delay.o: ..\..\FreeRTOS\inc\projdefs.h
-.\objects\delay.o: ..\..\FreeRTOS\inc\portable.h
-.\objects\delay.o: ..\..\FreeRTOS\inc\deprecated_definitions.h
-.\objects\delay.o: ..\..\FreeRTOS\port\portmacro.h
-.\objects\delay.o: ..\..\FreeRTOS\inc\mpu_wrappers.h
-.\objects\delay.o: ..\..\FreeRTOS\inc\task.h
-.\objects\delay.o: ..\..\FreeRTOS\inc\list.h
-.\objects\delay.o: ..\..\FreeRTOS\inc\timers.h

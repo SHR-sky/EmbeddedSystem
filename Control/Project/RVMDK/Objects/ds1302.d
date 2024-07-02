@@ -46,14 +46,3 @@
 .\objects\ds1302.o: ..\..\Hardware\LDChip.h
 .\objects\ds1302.o: ..\..\Hardware\HC_SR04.h
 .\objects\ds1302.o: ..\..\Hardware\DS1302.h
-.\objects\ds1302.o: ..\..\FreeRTOS\inc\FreeRTOS.h
-.\objects\ds1302.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\ds1302.o: ..\..\FreeRTOS\FreeRTOSConfig.h
-.\objects\ds1302.o: ..\..\FreeRTOS\inc\projdefs.h
-.\objects\ds1302.o: ..\..\FreeRTOS\inc\portable.h
-.\objects\ds1302.o: ..\..\FreeRTOS\inc\deprecated_definitions.h
-.\objects\ds1302.o: ..\..\FreeRTOS\port\portmacro.h
-.\objects\ds1302.o: ..\..\FreeRTOS\inc\mpu_wrappers.h
-.\objects\ds1302.o: ..\..\FreeRTOS\inc\task.h
-.\objects\ds1302.o: ..\..\FreeRTOS\inc\list.h
-.\objects\ds1302.o: ..\..\FreeRTOS\inc\timers.h

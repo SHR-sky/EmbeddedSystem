@@ -46,14 +46,3 @@
 .\objects\myiic.o: ..\..\Hardware\LDChip.h
 .\objects\myiic.o: ..\..\Hardware\HC_SR04.h
 .\objects\myiic.o: ..\..\Hardware\DS1302.h
-.\objects\myiic.o: ..\..\FreeRTOS\inc\FreeRTOS.h
-.\objects\myiic.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\myiic.o: ..\..\FreeRTOS\FreeRTOSConfig.h
-.\objects\myiic.o: ..\..\FreeRTOS\inc\projdefs.h
-.\objects\myiic.o: ..\..\FreeRTOS\inc\portable.h
-.\objects\myiic.o: ..\..\FreeRTOS\inc\deprecated_definitions.h
-.\objects\myiic.o: ..\..\FreeRTOS\port\portmacro.h
-.\objects\myiic.o: ..\..\FreeRTOS\inc\mpu_wrappers.h
-.\objects\myiic.o: ..\..\FreeRTOS\inc\task.h
-.\objects\myiic.o: ..\..\FreeRTOS\inc\list.h
-.\objects\myiic.o: ..\..\FreeRTOS\inc\timers.h

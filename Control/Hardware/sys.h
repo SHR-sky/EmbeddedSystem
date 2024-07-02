@@ -11,9 +11,9 @@
 #include "LDChip.h"
 #include "HC_SR04.h"
 #include "DS1302.h"
-#include "FreeRTOS.h"
-#include "task.h"
-#include "timers.h"
+//#include "FreeRTOS.h"
+//#include "task.h"
+//#include "timers.h"
 /********************************************************************/
 																    
 #define BITBAND(addr, bitnum) ((addr & 0xF0000000)+0x2000000+((addr &0xFFFFF)<<5)+(bitnum<<2)) 

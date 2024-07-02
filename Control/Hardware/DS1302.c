@@ -89,28 +89,28 @@ u8 ds1302_read_rig(u8 address) // 从指定地址读取一字节数据
 	u8 return_data = 0x00;
 	CE_L;
 	SCLK_L;
-	forDelay(3);
+	delay_us(3);
 	CE_H;
-	forDelay(3);
+	delay_us(3);
 	ds1302_write_onebyte(temp3);
 	ds1032_DATAINPUT_init(); // 配置I/O口为输入
-	forDelay(2);
+	delay_us(2);
 	for (count = 0; count < 8; count++)
 	{
-		forDelay(2);
+		delay_us(2);
 		// 使电平持续一段时间
 		return_data >>= 1;
 		SCLK_H;
-		forDelay(4);
+		delay_us(4);
 		// 使高电平持续一段时间
 		SCLK_L;
-		forDelay(14); // 延时14us后再去读取电压，更加准确
+		delay_us(14); // 延时14us后再去读取电压，更加准确
 		if (GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_10))
 		{
 			return_data = return_data | 0x80;
 		}
 	}
-	forDelay(2);
+	delay_us(2);
 	CE_L;
 	DATA_L;
 	return return_data;

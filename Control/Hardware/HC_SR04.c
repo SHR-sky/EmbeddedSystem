@@ -3,38 +3,44 @@
 // 红外测距
 
 
-#define HCSR04_PORT     GPIOB
-#define HCSR04_CLK      RCC_AHB1Periph_GPIOB
-#define HCSR04_TRIG     GPIO_Pin_11
-#define HCSR04_ECHO     GPIO_Pin_10
+// Trig - PD0
+// Echo - PD1
+// TIM4 超声波
 
+#define HCSR04_PORT     GPIOD
+#define HCSR04_CLK      RCC_AHB1Periph_GPIOD
+#define HCSR04_TRIG     GPIO_Pin_0
+#define HCSR04_ECHO     GPIO_Pin_1
+#define TRIG_H	GPIO_SetBits(GPIOD,GPIO_Pin_0)
+#define TRIG_L	GPIO_ResetBits(GPIOD,GPIO_Pin_0)
+#define ECHO_IN GPIO_ReadInputDataBit(GPIOD,GPIO_Pin_1)
 
 u16 msHcCount = 0; 
  
 void HC_Init(void)
 {  
-    TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;   
-    GPIO_InitTypeDef GPIO_InitStructure;
+    TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;   
     RCC_APB1PeriphClockCmd(HCSR04_CLK, ENABLE);
  
-    GPIO_InitStructure.GPIO_Pin =HCSR04_TRIG;      
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
-    GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-    GPIO_Init(HCSR04_PORT, &GPIO_InitStructure);
-    GPIO_ResetBits(HCSR04_PORT,HCSR04_TRIG);
+	GPIO_InitTypeDef GPIO_InitStructure;
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0; 
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT; // 推挽输出
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	GPIO_Init(GPIOD, &GPIO_InitStructure); // 初始化GPIOC.11
+	GPIO_ResetBits(GPIOD,GPIO_Pin_0);
  
-    GPIO_InitStructure.GPIO_Pin = HCSR04_ECHO;     
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;     
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
     GPIO_Init(HCSR04_PORT, &GPIO_InitStructure);  
-    GPIO_ResetBits(HCSR04_PORT,HCSR04_ECHO);    
+    //GPIO_ResetBits(HCSR04_PORT,HCSR04_ECHO);    
  
  
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);   
  
-    TIM_DeInit(TIM2);
     TIM_TimeBaseStructure.TIM_Period = (1000-1); 
-    TIM_TimeBaseStructure.TIM_Prescaler =(72-1); 
+    TIM_TimeBaseStructure.TIM_Prescaler =(84-1); 
     TIM_TimeBaseStructure.TIM_ClockDivision=TIM_CKD_DIV1;
     TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;  
     TIM_TimeBaseInit(TIM4, &TIM_TimeBaseStructure);          
@@ -43,7 +49,7 @@ void HC_Init(void)
     TIM_ITConfig(TIM4,TIM_IT_Update,ENABLE);    
  
     NVIC_InitTypeDef NVIC_InitStructure;
-    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+    //NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
  
     NVIC_InitStructure.NVIC_IRQChannel = TIM4_IRQn;             
     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;  
@@ -73,8 +79,9 @@ void TIM4_IRQHandler(void)
 {
     if (TIM_GetITStatus(TIM4, TIM_IT_Update) != RESET)  
    {
-       TIM_ClearITPendingBit(TIM4, TIM_IT_Update  ); 
+       TIM_ClearITPendingBit(TIM4, TIM_IT_Update); 
        msHcCount++;
+	   //Serial_Printf("%d\r\n",msHcCount);
    }
 }
  
@@ -85,7 +92,7 @@ u32 GetEchoTimer(void)
     u32 t = 0;
     t = msHcCount*1000;
     t += TIM_GetCounter(TIM4);
-    TIM4->CNT = 0;  
+    TIM4->CNT = 0;	
     delay_ms(50);
     return t;
 }
@@ -97,16 +104,17 @@ float HC_Get(void)
     float lengthTemp = 0;
     float sum = 0;
     while(i!=5)
-   {
-       PBout(11) = 1;      
-       delay_us(20);
-       TRIG_Send = 0;
-       while(ECHO_Reci == 0);      
-       OpenTimerForHc();        
+   {   
+	   TRIG_H;
+       delay_us(30);
+       TRIG_L;   
+	   OpenTimerForHc();
+	   while(ECHO_IN == 0);       
        i = i + 1;
-       while(ECHO_Reci == 1);
-       CloseTimerForHc();        
-       t = GetEchoTimer();        
+       while(ECHO_IN == 1);
+       CloseTimerForHc();  
+		
+       t = GetEchoTimer();
        lengthTemp = ((float)t/ (float)58.0);//cm
        sum = lengthTemp + sum ;
  

@@ -46,14 +46,3 @@
 .\objects\reg_rw.o: ..\..\Hardware\LDChip.h
 .\objects\reg_rw.o: ..\..\Hardware\HC_SR04.h
 .\objects\reg_rw.o: ..\..\Hardware\DS1302.h
-.\objects\reg_rw.o: ..\..\FreeRTOS\inc\FreeRTOS.h
-.\objects\reg_rw.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\reg_rw.o: ..\..\FreeRTOS\FreeRTOSConfig.h
-.\objects\reg_rw.o: ..\..\FreeRTOS\inc\projdefs.h
-.\objects\reg_rw.o: ..\..\FreeRTOS\inc\portable.h
-.\objects\reg_rw.o: ..\..\FreeRTOS\inc\deprecated_definitions.h
-.\objects\reg_rw.o: ..\..\FreeRTOS\port\portmacro.h
-.\objects\reg_rw.o: ..\..\FreeRTOS\inc\mpu_wrappers.h
-.\objects\reg_rw.o: ..\..\FreeRTOS\inc\task.h
-.\objects\reg_rw.o: ..\..\FreeRTOS\inc\list.h
-.\objects\reg_rw.o: ..\..\FreeRTOS\inc\timers.h
