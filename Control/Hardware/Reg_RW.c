@@ -1,182 +1,75 @@
 #include "Reg_RW.h"
-#include "LDChip.h"
-#include "delay.h"
 
-// è½¯ä»¶æ¨¡æ‹ŸSPIæ–¹å¼è¯»å†™
-#define DELAY_NOP delay_us(1)
-
-void LD3320_Init(void)
+/***********************************************************
+* Ãû    ³Æ£ºstatic uint8 spi_send_byte(uint8 byte)
+* ¹¦    ÄÜ£º Ğ´SPI
+* Èë¿Ú²ÎÊı£º  
+* ³ö¿Ú²ÎÊı£º
+* Ëµ    Ã÷£º
+* µ÷ÓÃ·½·¨£º 
+**********************************************************/ 
+static uint8 spi_send_byte(uint8 byte)
 {
-	GPIO_InitTypeDef GPIO_InitStructure;
+	/* Ñ­»·¼ì²â·¢ËÍ»º³åÇøÊÇ·ñÊÇ¿Õ */
+	while (SPI_I2S_GetFlagStatus(LD3320SPI, SPI_I2S_FLAG_TXE) == RESET);
 
-	RCC_AHB1PeriphClockCmd(LD3320_SDCK_GPIO_CLK | LD3320_SDO_GPIO_CLK | LD3320_SDI_GPIO_CLK |
-							   LD3320_SCS_GPIO_CLK | LD3320_RSTB_GPIO_CLK | LD3320_IRQ_GPIO_CLK,
-						   ENABLE); // ä½¿èƒ½PAç«¯å£æ—¶é’Ÿã€‚
+	/*Í¨¹ıSPI3ÍâÉè·¢³öÊı¾İ*/
+	SPI_I2S_SendData(LD3320SPI,byte);
 
-	GPIO_InitStructure.GPIO_Pin = LD3320_SDCK_PIN;		   // ç«¯å£é…ç½®
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;		   // æ™®é€šè¾“å‡ºæ¨¡å¼
-	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;		   // æ¨æŒ½è¾“å‡º
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;	   // 100MHz
-	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;		   // ä¸Šæ‹‰
-	GPIO_Init(LD3320_SDCK_GPIO_PORT, &GPIO_InitStructure); // åˆå§‹åŒ–IOå£
+	/* µÈ´ı½ÓÊÕÊı¾İ£¬Ñ­»·¼ì²é½ÓÊÕÊı¾İ»º³åÇø */
+	while (SPI_I2S_GetFlagStatus(LD3320SPI,SPI_I2S_FLAG_RXNE) == RESET);
 
-	GPIO_InitStructure.GPIO_Pin = LD3320_SDI_PIN;		  // ç«¯å£é…ç½®
-	GPIO_Init(LD3320_SDI_GPIO_PORT, &GPIO_InitStructure); // åˆå§‹åŒ–IOå£
+	/* ·µ»Ø¶Á³öµÄÊı¾İ */
+	return SPI_I2S_ReceiveData(LD3320SPI);
+}
+/***********************************************************
+* Ãû    ³Æ£ºvoid LD_WriteReg(uint8 data1,uint8 data2)
+* ¹¦    ÄÜ£º Ğ´ld3320¼Ä´æÆ÷
+* Èë¿Ú²ÎÊı£º  
+* ³ö¿Ú²ÎÊı£º
+* Ëµ    Ã÷£º
+* µ÷ÓÃ·½·¨£º 
+**********************************************************/ 
+void LD_WriteReg(uint8 data1,uint8 data2)
+{
+	LD_CS_L();
 
-	GPIO_InitStructure.GPIO_Pin = LD3320_SCS_PIN;		  // ç«¯å£é…ç½®
-	GPIO_Init(LD3320_SCS_GPIO_PORT, &GPIO_InitStructure); // åˆå§‹åŒ–IOå£
+	LD_SPIS_L();
 
-	GPIO_InitStructure.GPIO_Pin = LD3320_RSTB_PIN;		   // ç«¯å£é…ç½®
-	GPIO_Init(LD3320_RSTB_GPIO_PORT, &GPIO_InitStructure); // åˆå§‹åŒ–IOå£
+	spi_send_byte(0x04);
 
-	GPIO_InitStructure.GPIO_Pin = LD3320_SDO_PIN;		  // ç«¯å£é…ç½®
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;		  // æ™®é€šè¾“å…¥æ¨¡å¼
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;	  // 100M
-	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;		  // ä¸Šæ‹‰
-	GPIO_Init(LD3320_SDO_GPIO_PORT, &GPIO_InitStructure); // åˆå§‹åŒ–IOå£
+	spi_send_byte(data1);
 
-	GPIO_InitStructure.GPIO_Pin = LD3320_IRQ_PIN;		  // ç«¯å£é…ç½®
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;		  // æ™®é€šè¾“å…¥æ¨¡å¼
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;	  // 100M
-	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;		  // ä¸Šæ‹‰
-	GPIO_Init(LD3320_IRQ_GPIO_PORT, &GPIO_InitStructure); // åˆå§‹åŒ–IOå£
+	spi_send_byte(data2);
+
+	LD_CS_H();
+
+}
+/***********************************************************
+* Ãû    ³Æ£ºuint8 LD_ReadReg(uint8 reg_add)
+* ¹¦    ÄÜ£º¶Áld3320¼Ä´æÆ÷
+* Èë¿Ú²ÎÊı£º  
+* ³ö¿Ú²ÎÊı£º
+* Ëµ    Ã÷£º
+* µ÷ÓÃ·½·¨£º 
+**********************************************************/ 
+uint8 LD_ReadReg(uint8 reg_add)
+{
+	uint8 i;
+
+	LD_CS_L();
+
+	LD_SPIS_L();
+
+	spi_send_byte(0x05);
+
+	spi_send_byte(reg_add);
+
+	i=spi_send_byte(0x00);	/*¶ÁSPI*/
+
+	LD_CS_H();
+
+	return(i);
 }
 
-void EXTIX_Init(void)
-{
-	EXTI_InitTypeDef EXTI_InitStructure;
-	NVIC_InitTypeDef NVIC_InitStructure;
 
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);				   // ä½¿èƒ½SYSCFGæ—¶é’Ÿ
-	SYSCFG_EXTILineConfig(LD3320_IRQEXIT_PORTSOURCE, LD3320_IRQPINSOURCE); // è¿æ¥åˆ°ä¸­æ–­çº¿2
-
-	EXTI_InitStructure.EXTI_Line = LD3320_IRQEXITLINE;
-	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
-	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
-	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
-	EXTI_Init(&EXTI_InitStructure); // æ ¹æ®EXTI_InitStructä¸­æŒ‡å®šçš„å‚æ•°åˆå§‹åŒ–å¤–è®¾EXTIå¯„å­˜å™¨
-
-	NVIC_InitStructure.NVIC_IRQChannel = LD3320_IRQN;			 // ä½¿èƒ½æŒ‰é”®KEY2æ‰€åœ¨çš„å¤–éƒ¨ä¸­æ–­é€šé“
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x02; // æŠ¢å ä¼˜å…ˆçº§2ï¼Œ
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x02;		 // å­ä¼˜å…ˆçº§2
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;				 // ä½¿èƒ½å¤–éƒ¨ä¸­æ–­é€šé“
-	NVIC_Init(&NVIC_InitStructure);
-}
-
-void LD_WriteReg(unsigned char address, unsigned char dataout)
-{
-	unsigned char i = 0;
-	unsigned char command = 0x04;
-	SCS = 0;
-	DELAY_NOP;
-
-	// write command
-	for (i = 0; i < 8; i++)
-	{
-		if (command & 0x80)
-			SDI = 1;
-		else
-			SDI = 0;
-
-		DELAY_NOP;
-		SDCK = 0;
-		command = (command << 1);
-		DELAY_NOP;
-		SDCK = 1;
-	}
-	// write address
-	for (i = 0; i < 8; i++)
-	{
-		if (address & 0x80)
-			SDI = 1;
-		else
-			SDI = 0;
-		DELAY_NOP;
-		SDCK = 0;
-		address = (address << 1);
-		DELAY_NOP;
-		SDCK = 1;
-	}
-	// write data
-	for (i = 0; i < 8; i++)
-	{
-		if (dataout & 0x80)
-			SDI = 1;
-		else
-			SDI = 0;
-		DELAY_NOP;
-		SDCK = 0;
-		dataout = (dataout << 1);
-		DELAY_NOP;
-		SDCK = 1;
-	}
-	DELAY_NOP;
-	SCS = 1;
-}
-
-unsigned char LD_ReadReg(unsigned char address)
-{
-	unsigned char i = 0;
-	unsigned char datain = 0;
-	unsigned char temp = 0;
-	unsigned char command = 0x05;
-	SCS = 0;
-	DELAY_NOP;
-
-	// write command
-	for (i = 0; i < 8; i++)
-	{
-		if (command & 0x80)
-			SDI = 1;
-		else
-			SDI = 0;
-		DELAY_NOP;
-		SDCK = 0;
-		command = (command << 1);
-		DELAY_NOP;
-		SDCK = 1;
-	}
-
-	// write address
-	for (i = 0; i < 8; i++)
-	{
-		if (address & 0x80)
-			SDI = 1;
-		else
-			SDI = 0;
-		DELAY_NOP;
-		SDCK = 0;
-		address = (address << 1);
-		DELAY_NOP;
-		SDCK = 1;
-	}
-	DELAY_NOP;
-
-	// Read
-	for (i = 0; i < 8; i++)
-	{
-		datain = (datain << 1);
-		temp = SDO;
-		DELAY_NOP;
-		SDCK = 0;
-		if (temp == 1)
-			datain |= 0x01;
-		DELAY_NOP;
-		SDCK = 1;
-	}
-
-	DELAY_NOP;
-	SCS = 1;
-	return datain;
-}
-
-void EXTI9_5_IRQHandler(void)
-{
-	if (EXTI_GetITStatus(LD3320_IRQEXITLINE) != RESET)
-	{
-		ProcessInt();
-		// printf("è¿›å…¥ä¸­æ–­\r\n");
-		EXTI_ClearFlag(LD3320_IRQEXITLINE);
-		EXTI_ClearITPendingBit(LD3320_IRQEXITLINE); // æ¸…é™¤LINEä¸Šçš„ä¸­æ–­æ ‡å¿—ä½
-	}
-}

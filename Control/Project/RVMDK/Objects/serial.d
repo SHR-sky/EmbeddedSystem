@@ -42,8 +42,8 @@
 .\objects\serial.o: ..\..\Hardware\DHT11.h
 .\objects\serial.o: ..\..\Hardware\Serial.h
 .\objects\serial.o: ..\..\Hardware\Delay.h
-.\objects\serial.o: ..\..\Hardware\Reg_RW.h
-.\objects\serial.o: ..\..\Hardware\LDChip.h
+.\objects\serial.o: ..\..\Hardware\LD3320.h
+.\objects\serial.o: ..\..\Hardware\LD3320_config.h
 .\objects\serial.o: ..\..\Hardware\HC_SR04.h
 .\objects\serial.o: ..\..\Hardware\DS1302.h
 .\objects\serial.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h

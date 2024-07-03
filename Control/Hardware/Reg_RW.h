@@ -2,57 +2,53 @@
 #define REG_RW_H
 #include "sys.h"
 
-// CS-PA4
-// IRQ-PA8
-// WR-PA12
-// SCK-PA5
-// MISO-PA6
-// MOSI-PA7
-// RST-PA11
+#define SDCK PBout(13)			//SPI  ±÷”–≈∫≈
+#define SDO  PCin(2)			//SPI  ˝æ› ‰≥ˆ
+#define SDI  PCout(3)			//SPI  ˝æ› ‰»Î
+#define SCS  PBout(12)			//–æ∆¨∆¨—°–≈∫≈
+#define RSTB PBout(3)			//∏¥Œª∂Àø⁄
+#define IRQ  PBout(8)			//÷–∂œ“˝Ω≈
 
-#define SDCK PAout(5) // SPI Êó∂Èíü‰ø°Âè∑
-#define SDO PAin(6)   // SPI Êï∞ÊçÆËæìÂá∫
-#define SDI PAout(7)  // SPI Êï∞ÊçÆËæìÂÖ•
-#define SCS PAout(4)   // ËäØÁâáÁâáÈÄâ‰ø°Âè∑
-#define RSTB PAout(11) // Â§ç‰ΩçÁ´ØÂè£
-#define IRQ PAout(8)   // ‰∏≠Êñ≠ÂºïËÑö
 
-/// LD3320ÂºïËÑöÁõ∏ÂÖ≥ÂÆö‰πâ
-#define LD3320_SDCK_GPIO_CLK RCC_AHB1Periph_GPIOA
-#define LD3320_SDCK_GPIO_PORT GPIOA
-#define LD3320_SDCK_PIN GPIO_Pin_5
+///LD3320“˝Ω≈œ‡πÿ∂®“Â
+#define LD3320_SDCK_GPIO_CLK			RCC_AHB1Periph_GPIOB
+#define LD3320_SDCK_GPIO_PORT			GPIOB
+#define LD3320_SDCK_PIN					GPIO_Pin_7
 
-#define LD3320_SDO_GPIO_CLK RCC_AHB1Periph_GPIOA
-#define LD3320_SDO_GPIO_PORT GPIOA
-#define LD3320_SDO_PIN GPIO_Pin_6
+#define LD3320_SDO_GPIO_CLK				RCC_AHB1Periph_GPIOB
+#define LD3320_SDO_GPIO_PORT			GPIOB
+#define LD3320_SDO_PIN					GPIO_Pin_6
 
-#define LD3320_SDI_GPIO_CLK RCC_AHB1Periph_GPIOA
-#define LD3320_SDI_GPIO_PORT GPIOA
-#define LD3320_SDI_PIN GPIO_Pin_7
+#define LD3320_SDI_GPIO_CLK				RCC_AHB1Periph_GPIOB
+#define LD3320_SDI_GPIO_PORT			GPIOB
+#define LD3320_SDI_PIN					GPIO_Pin_5
 
-#define LD3320_SCS_GPIO_CLK RCC_AHB1Periph_GPIOA
-#define LD3320_SCS_GPIO_PORT GPIOA
-#define LD3320_SCS_PIN GPIO_Pin_4
+#define LD3320_SCS_GPIO_CLK				RCC_AHB1Periph_GPIOB
+#define LD3320_SCS_GPIO_PORT			GPIOB
+#define LD3320_SCS_PIN					GPIO_Pin_2
 
-#define LD3320_RSTB_GPIO_CLK RCC_AHB1Periph_GPIOA
-#define LD3320_RSTB_GPIO_PORT GPIOA
-#define LD3320_RSTB_PIN GPIO_Pin_11
+#define LD3320_RSTB_GPIO_CLK		    RCC_AHB1Periph_GPIOB
+#define LD3320_RSTB_GPIO_PORT			GPIOB
+#define LD3320_RSTB_PIN					GPIO_Pin_3
 
-#define LD3320_IRQ_GPIO_CLK RCC_AHB1Periph_GPIOA
-#define LD3320_IRQ_GPIO_PORT GPIOA
-#define LD3320_IRQ_PIN GPIO_Pin_8
+#define LD3320_IRQ_GPIO_CLK				RCC_AHB1Periph_GPIOB
+#define LD3320_IRQ_GPIO_PORT			GPIOB
+#define LD3320_IRQ_PIN					GPIO_Pin_0
 
-#define LD3320_IRQEXIT_PORTSOURCE EXTI_PortSourceGPIOA
-#define LD3320_IRQPINSOURCE GPIO_PinSource8
-#define LD3320_IRQEXITLINE EXTI_Line8
-#define LD3320_IRQN EXTI9_5_IRQn
+#define LD3320_IRQEXIT_PORTSOURCE		EXTI_PortSourceGPIOB
+#define LD3320_IRQPINSOURCE				GPIO_PinSource8
+#define LD3320_IRQEXITLINE				EXTI_Line8
+#define LD3320_IRQN						EXTI9_5_IRQn
 
-#define READ_SDO() GPIO_ReadInputDataBit(LD3320_SDO_GPIO_PORT, LD3320_SDO_PIN)
+#define READ_SDO()   GPIO_ReadInputDataBit(LD3320_SDO_GPIO_PORT, LD3320_SDO_PIN)
 
-// ÂáΩÊï∞Â£∞Êòé
+
+
+//∫Ø ˝…˘√˜
 void LD3320_Init(void);
 void EXTIX_Init(void);
-void LD_WriteReg(unsigned char address, unsigned char dataout);
-unsigned char LD_ReadReg(unsigned char address);
+void LD_WriteReg( unsigned char address, unsigned char dataout );
+unsigned char LD_ReadReg( unsigned char address );
+
 
 #endif

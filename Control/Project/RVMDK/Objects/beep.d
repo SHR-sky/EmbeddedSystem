@@ -42,7 +42,7 @@
 .\objects\beep.o: ..\..\Hardware\Serial.h
 .\objects\beep.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\beep.o: ..\..\Hardware\Delay.h
-.\objects\beep.o: ..\..\Hardware\Reg_RW.h
-.\objects\beep.o: ..\..\Hardware\LDChip.h
+.\objects\beep.o: ..\..\Hardware\LD3320.h
+.\objects\beep.o: ..\..\Hardware\LD3320_config.h
 .\objects\beep.o: ..\..\Hardware\HC_SR04.h
 .\objects\beep.o: ..\..\Hardware\DS1302.h

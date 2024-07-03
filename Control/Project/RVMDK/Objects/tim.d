@@ -42,7 +42,7 @@
 .\objects\tim.o: ..\..\Hardware\Serial.h
 .\objects\tim.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\tim.o: ..\..\Hardware\Delay.h
-.\objects\tim.o: ..\..\Hardware\Reg_RW.h
-.\objects\tim.o: ..\..\Hardware\LDChip.h
+.\objects\tim.o: ..\..\Hardware\LD3320.h
+.\objects\tim.o: ..\..\Hardware\LD3320_config.h
 .\objects\tim.o: ..\..\Hardware\HC_SR04.h
 .\objects\tim.o: ..\..\Hardware\DS1302.h

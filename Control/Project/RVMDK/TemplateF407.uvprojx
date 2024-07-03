@@ -869,24 +869,19 @@
               <FilePath>..\..\Hardware\intrins.h</FilePath>
             </File>
             <File>
-              <FileName>LDChip.c</FileName>
+              <FileName>LD3320.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\Hardware\LDChip.c</FilePath>
+              <FilePath>..\..\Hardware\LD3320.c</FilePath>
             </File>
             <File>
-              <FileName>LDChip.h</FileName>
+              <FileName>LD3320.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\Hardware\LDChip.h</FilePath>
+              <FilePath>..\..\Hardware\LD3320.h</FilePath>
             </File>
             <File>
-              <FileName>Reg_RW.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Hardware\Reg_RW.c</FilePath>
-            </File>
-            <File>
-              <FileName>Reg_RW.h</FileName>
+              <FileName>LD3320_config.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\Hardware\Reg_RW.h</FilePath>
+              <FilePath>..\..\Hardware\LD3320_config.h</FilePath>
             </File>
           </Files>
         </Group>

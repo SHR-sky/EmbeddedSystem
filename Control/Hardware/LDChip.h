@@ -1,68 +1,77 @@
+/************************************************************************************
+**	°æÈ¨ËùÓĞ£ºCopyright (c) 2005 - 2010 ICRoute INC.
+** Ó²¼şËµÃ÷£ºSTM32f103vet6  8MHZ  ÄÚ²¿Ê±ÖÓÎª72MHZ 
+** 					 LD3320 ÓĞÔ´¾§Õñ 12MHZ  ²»Í¬µÄ¾§ÕñÇëĞŞ¸ÄLDChip.h ÖĞµÄ¶¨ÒåÖµ£¨££define CLK_IN  12£©
+** Èí¼şËµÃ÷£º²¢ĞĞ¶ÁĞ´¼Ä´æÆ÷·½Ê½£¬Èç²ÉÓÃÆäËû·½Ê½¼´ĞŞ¸ÄReg_RW.c ÎÄ¼ş¼´¿É£¡
+** ĞŞ¸ÄÕß:  http://shop64790118.taobao.com/
+** Ê±¼ä£º2011.10.15
+** ËµÃ÷£º±¾³ÌĞòĞŞ¸ÄÓÚ ICRoute¹«Ë¾ ÅäÌ×µÄÔ´³ÌĞò£¬°æÈ¨¹éÆäËùÓĞ¡£
+************************************************************************************/
+
 #ifndef LD_CHIP_H
 #define LD_CHIP_H
 
 #include "sys.h"
 
-//	ä»¥ä¸‹ä¸‰ä¸ªçŠ¶æ€å®šä¹‰ç”¨æ¥è®°å½•ç¨‹åºæ˜¯åœ¨è¿è¡ŒASRè¯†åˆ«è¿˜æ˜¯åœ¨è¿è¡ŒMP3æ’­æ”¾
-#define LD_MODE_IDLE 0x00
-#define LD_MODE_ASR_RUN 0x08
-#define LD_MODE_MP3 0x40
+#define uint8 unsigned char
+#define uint16 unsigned int
+#define uint32 unsigned long
 
-//	ä»¥ä¸‹äº”ä¸ªçŠ¶æ€å®šä¹‰ç”¨æ¥è®°å½•ç¨‹åºæ˜¯åœ¨è¿è¡ŒASRè¯†åˆ«è¿‡ç¨‹ä¸­çš„å“ªä¸ªçŠ¶æ€
-#define LD_ASR_NONE 0x00      //	è¡¨ç¤ºæ²¡æœ‰åœ¨ä½œASRè¯†åˆ«
-#define LD_ASR_RUNING 0x01    //	è¡¨ç¤ºLD3320æ­£åœ¨ä½œASRè¯†åˆ«ä¸­
-#define LD_ASR_FOUNDOK 0x10   //	è¡¨ç¤ºä¸€æ¬¡è¯†åˆ«æµç¨‹ç»“æŸåï¼Œæœ‰ä¸€ä¸ªè¯†åˆ«ç»“æœ
-#define LD_ASR_FOUNDZERO 0x11 //	è¡¨ç¤ºä¸€æ¬¡è¯†åˆ«æµç¨‹ç»“æŸåï¼Œæ²¡æœ‰è¯†åˆ«ç»“æœ
-#define LD_ASR_ERROR 0x31     //	è¡¨ç¤ºä¸€æ¬¡è¯†åˆ«æµç¨‹ä¸­LD3320èŠ¯ç‰‡å†…éƒ¨å‡ºç°ä¸æ­£ç¡®çš„çŠ¶æ€
+//	ÒÔÏÂÈı¸ö×´Ì¬¶¨ÒåÓÃÀ´¼ÇÂ¼³ÌĞòÊÇÔÚÔËĞĞASRÊ¶±ğ»¹ÊÇÔÚÔËĞĞMP3²¥·Å
+#define LD_MODE_IDLE			0x00
+#define LD_MODE_ASR_RUN		0x08
+#define LD_MODE_MP3		 		0x40
 
-#define CLK_IN 24 /* ç”¨æˆ·æ³¨æ„ä¿®æ”¹è¾“å…¥çš„æ™¶æŒ¯æ—¶é’Ÿå¤§å° */
-#define LD_PLL_11 (u8)((CLK_IN / 2.0) - 1)
-#define LD_PLL_MP3_19 0x0f
-#define LD_PLL_MP3_1B 0x18
-#define LD_PLL_MP3_1D (u8)(((90.0 * ((LD_PLL_11) + 1)) / (CLK_IN)) - 1)
 
-#define LD_PLL_ASR_19 (u8)(CLK_IN * 32.0 / (LD_PLL_11 + 1) - 0.51)
-#define LD_PLL_ASR_1B 0x48
-#define LD_PLL_ASR_1D 0x1f
+//	ÒÔÏÂÎå¸ö×´Ì¬¶¨ÒåÓÃÀ´¼ÇÂ¼³ÌĞòÊÇÔÚÔËĞĞASRÊ¶±ğ¹ı³ÌÖĞµÄÄÄ¸ö×´Ì¬
+#define LD_ASR_NONE					0x00	//	±íÊ¾Ã»ÓĞÔÚ×÷ASRÊ¶±ğ
+#define LD_ASR_RUNING				0x01	//	±íÊ¾LD3320ÕıÔÚ×÷ASRÊ¶±ğÖĞ
+#define LD_ASR_FOUNDOK			0x10	//	±íÊ¾Ò»´ÎÊ¶±ğÁ÷³Ì½áÊøºó£¬ÓĞÒ»¸öÊ¶±ğ½á¹û
+#define LD_ASR_FOUNDZERO 		0x11	//	±íÊ¾Ò»´ÎÊ¶±ğÁ÷³Ì½áÊøºó£¬Ã»ÓĞÊ¶±ğ½á¹û
+#define LD_ASR_ERROR	 			0x31	//	±íÊ¾Ò»´ÎÊ¶±ğÁ÷³ÌÖĞLD3320Ğ¾Æ¬ÄÚ²¿³öÏÖ²»ÕıÈ·µÄ×´Ì¬
 
-#define MIC_VOL 0x43 // å’ªå¤´å¢ç›Š
 
-// è¯†åˆ«ç å®¢æˆ·ä¿®æ”¹å¤„
-#define CODE_CMD 0x00  // è¯¥å‘½ä»¤ç 0x00ç”¨æˆ·ä¸å¯è¿›è¡Œä¿®æ”¹ã€‚
-#define CODE_DMCS 0x01 // ä»£ç æµ‹è¯•
-#define CODE_CSWB 0x02 // æµ‹è¯•å®Œæ¯•
+#define CLK_IN   					22/* user need modify this value according to clock in */
+#define LD_PLL_11					(uint8)((CLK_IN/2.0)-1)
+#define LD_PLL_MP3_19			0x0f
+#define LD_PLL_MP3_1B			0x18
+#define LD_PLL_MP3_1D   	(uint8)(((90.0*((LD_PLL_11)+1))/(CLK_IN))-1)
 
-#define CODE_1KL1 0x03
-#define CODE_1KL2 0x04
-#define CODE_1KL3 0x05
-#define CODE_1KL4 0x06
+#define LD_PLL_ASR_19 		(uint8)(CLK_IN*32.0/(LD_PLL_11+1) - 0.51)
+#define LD_PLL_ASR_1B 		0x48
+#define LD_PLL_ASR_1D 		0x1f
 
-#define CODE_2KL1 0x18
-#define CODE_2KL2 0x19
-#define CODE_2KL3 0x1A
-#define CODE_2KL4 0x1B
+// LD chip fixed values.
+#define        RESUM_OF_MUSIC               0x01
+#define        CAUSE_MP3_SONG_END           0x20
 
-#define CODE_3KL1 0x1C
-#define CODE_3KL2 0x1D
-#define CODE_3KL3 0x1E
-#define CODE_3KL4 0x1F
+#define        MASK_INT_SYNC								0x10
+#define        MASK_INT_FIFO								0x04
+#define    	   MASK_AFIFO_INT								0x01
+#define        MASK_FIFO_STATUS_AFULL				0x08
 
-#define CODE_4KL1 0x20
-#define CODE_4KL2 0x21
-#define CODE_4KL3 0x22
-#define CODE_4KL4 0x23
-
-#define CODE_5KL1 0x24
-
-// å‡½æ•°å£°æ˜
-void LD_Reset(void);
+void LD_reset(void);
 void LD_Init_Common(void);
 void LD_Init_ASR(void);
-void ProcessInt(void);
+void LD_ReloadMp3Data(void);
+void LD_ReloadMp3Data_2(void);
+uint8 LD_ProcessAsr(uint32 RecogAddr);
 void LD_AsrStart(void);
-u8 LD_AsrRun(void);
-u8 LD_AsrAddFixed(void);
-u8 RunASR(void);
-u8 LD_GetResult(void);
+uint8 LD_AsrRun(void);
+uint8 LD_AsrAddFixed(void);
+uint8 LD_GetResult(void);
+void LD_ReadMemoryBlock(uint8 dev, uint8 * ptr, uint32 addr, uint8 count);
+void LD_WriteMemoryBlock(uint8 dev, uint8 * ptr, uint32 addr, uint8 count);
+extern uint8  nLD_Mode;
 
+
+//Ê¶±ğÂë£¨¿Í»§ĞŞ¸Ä´¦£©
+#define CODE_LSD	1	 /*Á÷Ë®µÆ*/
+#define CODE_SS	  2	 /*ÉÁË¸*/
+#define CODE_AJCF	3	 /*°´¼ü´¥·¢*/
+#define CODE_QM	  4	 /*È«Ãğ*/
+
+void  LD3320_delay(unsigned long uldata);
+
+#define MIC_VOL 0x43
 #endif

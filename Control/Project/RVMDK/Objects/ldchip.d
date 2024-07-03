@@ -1,5 +1,5 @@
 .\objects\ldchip.o: ..\..\Hardware\LDChip.c
-.\objects\ldchip.o: ..\..\Hardware\Reg_RW.h
+.\objects\ldchip.o: ..\..\Hardware\LDChip.h
 .\objects\ldchip.o: ..\..\Hardware\sys.h
 .\objects\ldchip.o: ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\ldchip.o: ..\..\Libraries\CMSIS\Include\core_cm4.h

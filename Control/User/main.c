@@ -5,8 +5,8 @@ extern struct TIMEData TimeData;
 void User_Modification(u8 dat);
 void LD3320(void);
 uint8_t temperature,humidity;
-u8 nAsrStatus = 0;
-u8 nAsrRes = 0;
+//u8 nAsrStatus = 0;
+//u8 nAsrRes = 0;
 u8 flag = 0;
 
 // 姿态检测主函数 用于检测到人的时候亮屏等功能
@@ -25,7 +25,8 @@ void PlayMusic(void);
 
 static void TemperatureGet(void);
 
-uint8_t nAsrStatus;
+//uint8_t nAsrStatus;
+void LD3320_test(void);
 
 int main(void)
 {
@@ -41,6 +42,13 @@ int main(void)
 	tDHT11_start();
 	Serial_Init();
 	Serial_Printf("Init Finish1!");
+	LD3320_init();
+	LD3320_test();
+	//nAsrStatus = LD_ASR_NONE; // 初始状态：没有在作ASR
+
+	printf("Run!\r\n");
+
+	/*
 	while(1) {
 		ClockDisplay();
 		PosDetection();
@@ -49,6 +57,7 @@ int main(void)
 		delay_ms(500);
 		//Serial_Printf("?");
 	}
+	*/
 
 }
 
@@ -112,3 +121,23 @@ void PlayMusic(void)
 	Serial_Printf("Music\n");
 }
 
+void LD3320_test(void)
+{
+	LD_reset();
+
+	LD_ReadReg(0x06);
+	LD3320_delay(5);
+	LD_WriteReg(0x35,0x33);
+	LD_WriteReg(0x1B,0x55);
+	LD_WriteReg(0x35,0x33);
+	LD3320_delay(5);
+	printf("%x\r\n",LD_ReadReg(0x35));
+	printf("%x\r\n",LD_ReadReg(0x1B));
+	printf("%x\r\n",LD_ReadReg(0x35));
+	
+	LD_reset();
+	printf("%x\r\n",LD_ReadReg(0x06));
+	printf("%x\r\n",LD_ReadReg(0x06));
+	printf("%x\r\n",LD_ReadReg(0x35));
+	printf("%x\r\n",LD_ReadReg(0xB3));
+}
