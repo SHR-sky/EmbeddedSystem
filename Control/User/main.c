@@ -11,6 +11,8 @@ u8 nAsrRes = 0;
 u8 flag = 0;
 static u32 cnt = 0;
 
+xPortSysTickHandler
+
 // 姿态检测主函数 用于检测到人的时候亮屏等功能
 u8 isScreenShut = 1;
 float formerDis = 10;

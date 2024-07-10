@@ -1,299 +1,260 @@
-#define ESP32_WiFi 1
-
-/*
-//控制模式
-    0用于WiFi传输数据，注意热点查看IP
-    1用于网页显示，注意网页内嵌图像为echart，需要开启本地服务器
-*/
-
-
-#if ESP32_WiFi
-
-//ESP32数据网页
-
-#include <ESPAsyncWebServer.h>    // 包含异步Web服务器库文件
-#include <WiFi.h>
-#include <Arduino.h>
-#include "I2Cdev.h"
-#include "MPU6050.h"
- 
-#if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
-    #include "Wire.h"
-#endif
-
-MPU6050 accelgyro;
- 
-//三轴的旋转角度及三轴加速度
-int16_t ax, ay, az;
-int16_t gx, gy, gz;
- 
-
-//13脚为指示灯
-#define LED_PIN 13
-bool blinkState = false;
-
-const char *ssid = "荣耀Magic4 Pro";
-const char *password = "123321123";
- 
-AsyncWebServer server(80);        // 创建WebServer对象, 端口号80
-// 功能为展示MPU收集到的数据
-// 一个储存网页的数组
-const char index_html[] PROGMEM = R"rawliteral(
-<!DOCTYPE HTML>
-<html>
-<head>
-	<meta charset="utf-8">
-</head>
-<body>
-	<h2>ESP32 网页</h2>
-	<!-- 创建一个ID为dht的盒子用于显示获取到的数据 -->
-	<div id="dht">
-	</div>
-	<button onclick="set()"> 发送数据 </button>
-
-<iframe src="http://127.0.0.1:5500/realtime_acceleration.html" width="1000" height="600" frameborder="0">
-  <p>您的浏览器不支持iframe元素。</p>
-</iframe>
-
-
-</body>
-<script>
-	// 按下按钮会运行这个JS函数
-	function set() {
-		var payload = "ESP32"; // 需要发送的内容，ESP32接受指令后可进行某些操作
-		// 通过get请求给 /set
-		var xhr = new XMLHttpRequest();
-		xhr.open("GET", "/set?value=" + payload, true);
-		xhr.send();
-	}
-	// 设置一个定时任务, 1000ms执行一次
-	setInterval(function () {
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function () {
-			if (this.readyState == 4 && this.status == 200) {
-				// 此代码会搜索ID为dht的组件，然后使用返回内容替换组件内容
-				document.getElementById("dht").innerHTML = this.responseText;
-			}
-		};
-		// 使用GET的方式请求 /dht
-		xhttp.open("GET", "/dht", true);
-		xhttp.send();
-	}, 1000)
-</script>)rawliteral";
-
-String Merge_Data(void)
-{
-
-  // 将温湿度打包为一个HTML显示代码
-  String dataBuffer = "<p>";
-  dataBuffer += "<h1>传感器数据 </h1>";
-  dataBuffer += "<b>x轴加速度: </b>";
-  dataBuffer += String(ax);
-  dataBuffer += "<br/>";
-  dataBuffer += "<b>y轴加速度: </b>";
-  dataBuffer += String(ay);
-  dataBuffer += "<br/>";
-  dataBuffer += "<b>z轴加速度: </b>";
-  dataBuffer += String(az);
-  dataBuffer += "<br/>";
-  dataBuffer += "<b>x轴角速度: </b>";
-  dataBuffer += String(gx);
-  dataBuffer += "<br/>";
-  dataBuffer += "<b>y轴角速度: </b>";
-  dataBuffer += String(gy);
-  dataBuffer += "<br/>";        
-  dataBuffer += "<b>z轴角速度: </b>";
-  dataBuffer += String(gz);
-  dataBuffer += "<br /></p>";
-  // 最后要将数组返回出去
-  return dataBuffer;
-}
- 
-// 下发处理回调函数
-void Config_Callback(AsyncWebServerRequest *request)
-{
-  if (request->hasParam("value")) // 如果有值下发
-  {
-    String HTTP_Payload = request->getParam("value")->value();    // 获取下发的数据
-    Serial.printf("[%lu]%s\r\n", millis(), HTTP_Payload.c_str()); // 打印调试信息
-  }
-  request->send(200, "text/plain", "OK"); // 发送接收成功标志符
-}
-  
-void setup()
-{
-    //初始化I2C，采用软件I2C
-    #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
-        Wire.begin(6,7,10000);
-    #endif
-    
-    //打开串口，传输数据
-    Serial.begin(115200);
-
-    Serial.println("Initializing I2C devices..."); 
-    //初始化MPU6050
-    accelgyro.initialize();
- 
-    Serial.println("Testing device connections...");
-    Serial.println(accelgyro.testConnection() ? "MPU6050 connection is successful" : "MPU6050 connection is failed");
-
-    //指示灯配置
-    pinMode(LED_PIN, OUTPUT);
-
-    Serial.println();
-
-    WiFi.mode(WIFI_STA);
-    WiFi.setSleep(false);
-    WiFi.begin(ssid,password);
-
-    while(WiFi.status() == WL_CONNECT_FAILED)
-    {
-        delay(500);
-        Serial.print(".");
-    }
-
-    Serial.println("Connected");
-    Serial.print("IP Address:");
-    Serial.println(WiFi.localIP());
-
-  // 添加HTTP主页，当访问的时候会把网页推送给访问者
-  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send_P(200, "text/html", index_html); });
-  // 设置反馈的信息，在HTML请求这个Ip/dht这个链接时，返回打包好的传感器数据
-  server.on("/dht", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send_P(200, "text/plain", Merge_Data().c_str()); });
-  server.on("/set", HTTP_GET, Config_Callback);   // 绑定配置下发的处理函数
-  server.begin();  // 初始化HTTP服务器
-  Serial.print("I am OK");
-}
-
-void loop()
-{
-
-    //获取姿态数据
-    accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
-
-    //灯闪烁，说明数据正常传输
-    blinkState = !blinkState;
-    digitalWrite(LED_PIN, blinkState);
-    delay(1000); //保持和网页刷新速度一致
-
-}
-
-
-#else
-
-
-
-//WIFI传输数据
+// ESP32数据网页
 
 #include <WiFi.h>
+#include <WiFiUdp.h>
 #include <Arduino.h>
-#include "I2Cdev.h"
-#include "MPU6050.h"
+#include <NTPClient.h>
+#include "ArduinoJson.h"
+#include <string.h>
 
-#if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
-    #include "Wire.h"
-#endif
 
-MPU6050 accelgyro;
- 
-//三轴的旋转角度及三轴加速度
-int16_t ax, ay, az;
-int16_t gx, gy, gz;
- 
-//13脚为指示灯
-#define LED_PIN 13
-bool blinkState = false;
+// RX TX 连接STM32
 
-//热点名称与密码
-const char *ssid = "荣耀Magic4 Pro";
-const char *password = "123321123";
-
-const IPAddress serverIP(192,168,72,123);
-uint16_t serverPort = 8010;
-
+// 创建客户端
 WiFiClient client;
 
+
+HardwareSerial MySerial_stm32(1);
+
+// 输入服务端，要求处于同一局域网
+
+const IPAddress serverIP(192, 168, 184, 48);
+uint16_t serverPort = 9999;
+
+// 网页请求
+void httpRequest(String reqRes);
+void parseInfo(WiFiClient client);
+
+// 接入的WIFI密码与名称
+const char *ssid = "HEXER";
+const char *password = "chafiprc";
+
+// Define NTP Client to get time
+const long utcOffsetInSeconds = 28800;
+WiFiUDP ntpUDP;
+NTPClient timeClient(ntpUDP, "pool.ntp.org", utcOffsetInSeconds);
+
+// 星期
+char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+
+// 定时获取
+// int get_weather_cnt = 0;
+
+const char *host = "api.seniverse.com"; // 将要连接的服务器地址
+const int httpPort = 80;                // 将要连接的服务器端口
+
+// 心知天气HTTP请求所需信息
+String reqUserKey = "SjF1ffbgYJ8Smyg4v"; // 私钥
+String reqLocation = "WuHan";            // 城市
+String reqUnit = "c";                    // 摄氏/华氏
+
+// 向心知天气服务器服务器请求信息并对信息进行解析
+void httpRequest(String reqRes)
+{
+    WiFiClient client_weather;
+
+    // 建立http请求信息
+    String httpRequest = String("GET ") + reqRes + " HTTP/1.1\r\n" +
+                         "Host: " + host + "\r\n" +
+                         "Connection: close\r\n\r\n";
+    Serial.println(" ");
+    Serial.print("Connecting to ");
+    Serial.print(host);
+
+    // 尝试连接服务器
+    if (client_weather.connect(host, 80))
+    {
+        Serial.println(" Success!");
+
+        // 向服务器发送http请求信息
+        client_weather.print(httpRequest);
+        Serial.println("Sending request: ");
+        Serial.println(httpRequest);
+
+        // 获取并显示服务器响应状态行
+        String status_response = client_weather.readStringUntil('\n');
+        Serial.print("status_response: ");
+        Serial.println(status_response);
+
+        // 使用find跳过HTTP响应头
+        if (client_weather.find("\r\n\r\n"))
+        {
+            Serial.println("Found Header End. Start Parsing.");
+        }
+
+        // 利用ArduinoJson库解析心知天气响应信息
+        parseInfo(client_weather);
+    }
+    else
+    {
+        Serial.println(" connection failed!");
+    }
+    // 断开客户端与服务器连接工作
+    client_weather.stop();
+}
+
+// 利用ArduinoJson库解析心知天气响应信息
+void parseInfo(WiFiClient client_weather)
+{
+    const size_t capacity = JSON_ARRAY_SIZE(1) + JSON_OBJECT_SIZE(1) + 2 * JSON_OBJECT_SIZE(3) + JSON_OBJECT_SIZE(6) + 230;
+    DynamicJsonDocument doc(capacity);
+
+    deserializeJson(doc, client_weather);
+
+    JsonObject results_0 = doc["results"][0];
+
+    JsonObject results_0_now = results_0["now"];
+    const char *results_0_now_text = results_0_now["text"];               // "Sunny"
+    const char *results_0_now_code = results_0_now["code"];               // "0"
+    const char *results_0_now_temperature = results_0_now["temperature"]; // "32"
+
+    const char *results_0_last_update = results_0["last_update"]; // "2020-06-02T14:40:00+08:00"
+
+    // 显示以上信息
+    String results_0_now_text_str = results_0_now["text"].as<String>();
+    int results_0_now_code_int = results_0_now["code"].as<int>();
+    int results_0_now_temperature_int = results_0_now["temperature"].as<int>();
+
+    String results_0_last_update_str = results_0["last_update"].as<String>();
+
+    client.println("WEA:");
+    client.println(results_0_now_text_str);
+    client.println("TEM:");
+    client.println(results_0_now_temperature_int);
+    client.println(results_0_last_update_str);
+    
+    MySerial_stm32.write(0x2);
+    MySerial_stm32.print("WEA:" + results_0_now_text_str + "TEM:" + results_0_now_temperature_int);
+    MySerial_stm32.write(0xff);
+}
+
+
 void setup()
 {
-
-    //初始化I2C，采用软件I2C
-    #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
-        Wire.begin(6,7,10000);
-    #endif
-    
-    //打开串口，传输数据
+    // 打开串口，传输数据
     Serial.begin(115200);
+    MySerial_stm32.begin(9600,SERIAL_8N1,41,40);
 
-    Serial.println("Initializing I2C devices..."); 
-    //初始化MPU6050
-    accelgyro.initialize();
- 
-    Serial.println("Testing device connections...");
-    Serial.println(accelgyro.testConnection() ? "MPU6050 connection is successful" : "MPU6050 connection is failed");
-
-    //指示灯配置
-    pinMode(LED_PIN, OUTPUT);
-
-    Serial.println();
-
-    pinMode(LED_PIN,OUTPUT);
-
+    // WIFI接入局域网
     WiFi.mode(WIFI_STA);
     WiFi.setSleep(false);
-    WiFi.begin(ssid,password);
+    WiFi.begin(ssid, password);
 
-    while(WiFi.status() == WL_CONNECT_FAILED)
+    while (WiFi.status() != WL_CONNECTED)
     {
         delay(500);
         Serial.print(".");
     }
+    timeClient.begin();
 
     Serial.println("Connected");
     Serial.print("IP Address:");
+    // 有点问题？
     Serial.println(WiFi.localIP());
 }
+
+
+char rev;
+String stm32_word = "";
+
 
 void loop()
 {
     Serial.println("try to connect the AP:");
-    if(client.connect(serverIP,serverPort))
+    if (client.connect(serverIP, serverPort))
     {
-        Serial.println("OK! Let say hello world");
-        client.printf("This is a try to covery the data from STA");
-        while(client.connected() || client.available())
-        {
-            if(client.available())
-            {
-                String line = client.readStringUntil('\n');
-                Serial.print("I get it!");
-                Serial.println(line); //测试能否将数据回传到ESP，并且利用ESP进行处理
-                if(line == "LED_ON") //测试能否接收指令
-                {
-                    digitalWrite(13,HIGH);
-                }
-                if(line == "LED_OFF")
-                {
-                    digitalWrite(13,LOW);
-                }
-                if(line == "Data")
-                {
-                    accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
-                    client.printf("ax:%d,ay:%d,az:%d\n",ax,ay,az);
-                    client.printf("gx:%d,gy:%d,gz:%d\n",gx,gy,gz);
-                }
-            }
-        }
-        Serial.println("Bye bye!");
-        client.stop(); //客户端关闭
-    }
-    else
-    {
-        Serial.println("There seemed to be a problem!");
-        client.stop(); //客户端关闭
-    }
-    delay(5000);
-}
 
-#endif
+
+
+        
+        Serial.println("OK! Let say hello world");
+
+
+        
+
+        while (1)
+        {
+
+
+            Serial.write(0xff);
+
+            String line = client.readStringUntil('\n');
+            if(MySerial_stm32.available())
+            {
+                rev=MySerial_stm32.read();
+                if(rev == 'A')
+                {   
+                    client.printf("STATE 1");
+                    String states = client.readStringUntil('\n');
+                    MySerial_stm32.print(0x01);
+                    MySerial_stm32.printf("",states);
+                    MySerial_stm32.print(0xff);
+                    MySerial_stm32.print(0xff);
+                    MySerial_stm32.print(0xff);
+                }
+                if(rev == 'B')
+                {   
+                    client.printf("STATE 1");
+                    String states = client.readStringUntil('\n');
+                    MySerial_stm32.print(0x01);
+                    MySerial_stm32.printf("",states);
+                    MySerial_stm32.print(0xff);
+                    MySerial_stm32.print(0xff);
+                    MySerial_stm32.print(0xff);
+                }
+
+            }
+
+            if(line == "PC")
+            {
+                String MEM = client.readStringUntil('\n');
+
+                String DISK = client.readStringUntil('\n');
+
+                String MYPC = client.readStringUntil('\n');
+
+            }
+
+            // 时间更新
+            if (line == "TIME")
+            {
+                timeClient.update();
+                client.println(timeClient.getFormattedTime());
+                MySerial_stm32.write(0x01);
+                MySerial_stm32.print(daysOfTheWeek[timeClient.getDay()]);
+                MySerial_stm32.print(", ");
+                MySerial_stm32.print(timeClient.getHours());
+                MySerial_stm32.print(":");
+                MySerial_stm32.print(timeClient.getMinutes());
+                MySerial_stm32.print(":");
+                MySerial_stm32.print(timeClient.getSeconds());
+                MySerial_stm32.write(0xff);
+            }
+
+            // 向心知天气服务器服务器请求信息并对信息进行解析
+            if (line == "WEATHER")
+            {
+                // 建立心知天气API当前天气请求资源地址
+                String reqRes = "/v3/weather/now.json?key=" + reqUserKey +
+                                +"&location=" + reqLocation +
+                                "&language=en&unit=" + reqUnit;
+                httpRequest(reqRes);
+            }
+
+            if(line == "PC")
+            {
+                MySerial_stm32.print(0x3);
+                MySerial_stm32.print(0xff);
+                MySerial_stm32.print(0xff);
+                MySerial_stm32.print(0xff);
+            }
+
+            if(line == "MUSIC")
+            {
+
+            }
+
+            Serial.println(line);
+        }
+    }
+}
