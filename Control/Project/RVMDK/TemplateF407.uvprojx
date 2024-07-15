@@ -341,7 +341,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER USE_STM324xG_EVAL</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\Libraries\CMSIS\Include;..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc;..\..\User;..\..\Hardware</IncludePath>
+              <IncludePath>..\..\Libraries\CMSIS\Include;..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc;..\..\User;..\..\Hardware;..\..\Hardware\LD3320;..\..\Hardware\DFPlayer</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -864,24 +864,34 @@
               <FilePath>..\..\Hardware\DS1302.h</FilePath>
             </File>
             <File>
-              <FileName>intrins.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\Hardware\intrins.h</FilePath>
-            </File>
-            <File>
-              <FileName>LD3320.c</FileName>
+              <FileName>LDChip.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\Hardware\LD3320.c</FilePath>
+              <FilePath>..\..\Hardware\LD3320\LDChip.c</FilePath>
             </File>
             <File>
-              <FileName>LD3320.h</FileName>
+              <FileName>LDChip.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\Hardware\LD3320.h</FilePath>
+              <FilePath>..\..\Hardware\LD3320\LDChip.h</FilePath>
             </File>
             <File>
-              <FileName>LD3320_config.h</FileName>
+              <FileName>Reg_RW.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Hardware\LD3320\Reg_RW.c</FilePath>
+            </File>
+            <File>
+              <FileName>Reg_RW.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\Hardware\LD3320_config.h</FilePath>
+              <FilePath>..\..\Hardware\LD3320\Reg_RW.h</FilePath>
+            </File>
+            <File>
+              <FileName>DFPlayer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Hardware\DFPlayer\DFPlayer.c</FilePath>
+            </File>
+            <File>
+              <FileName>DFPlayer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\Hardware\DFPlayer\DFPlayer.h</FilePath>
             </File>
           </Files>
         </Group>

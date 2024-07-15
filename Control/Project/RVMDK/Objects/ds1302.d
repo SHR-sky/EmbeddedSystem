@@ -42,7 +42,10 @@
 .\objects\ds1302.o: ..\..\Hardware\Serial.h
 .\objects\ds1302.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\ds1302.o: ..\..\Hardware\Delay.h
-.\objects\ds1302.o: ..\..\Hardware\LD3320.h
-.\objects\ds1302.o: ..\..\Hardware\LD3320_config.h
 .\objects\ds1302.o: ..\..\Hardware\HC_SR04.h
+.\objects\ds1302.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\ds1302.o: ..\..\Hardware\DS1302.h
+.\objects\ds1302.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
+.\objects\ds1302.o: ..\..\Hardware\DFPlayer\DFPlayer.h
+.\objects\ds1302.o: ..\..\Hardware\LD3320\LDChip.h
+.\objects\ds1302.o: ..\..\Hardware\LD3320\Reg_RW.h

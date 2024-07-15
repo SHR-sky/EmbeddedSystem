@@ -1,5 +1,4 @@
-.\objects\ldchip.o: ..\..\Hardware\LDChip.c
-.\objects\ldchip.o: ..\..\Hardware\LDChip.h
+.\objects\ldchip.o: ..\..\Hardware\LD3320\LDChip.c
 .\objects\ldchip.o: ..\..\Hardware\sys.h
 .\objects\ldchip.o: ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\ldchip.o: ..\..\Libraries\CMSIS\Include\core_cm4.h
@@ -42,7 +41,10 @@
 .\objects\ldchip.o: ..\..\Hardware\Serial.h
 .\objects\ldchip.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\ldchip.o: ..\..\Hardware\Delay.h
-.\objects\ldchip.o: ..\..\Hardware\Reg_RW.h
-.\objects\ldchip.o: ..\..\Hardware\LDChip.h
 .\objects\ldchip.o: ..\..\Hardware\HC_SR04.h
+.\objects\ldchip.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\ldchip.o: ..\..\Hardware\DS1302.h
+.\objects\ldchip.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
+.\objects\ldchip.o: ..\..\Hardware\DFPlayer\DFPlayer.h
+.\objects\ldchip.o: ..\..\Hardware\LD3320\LDChip.h
+.\objects\ldchip.o: ..\..\Hardware\LD3320\Reg_RW.h

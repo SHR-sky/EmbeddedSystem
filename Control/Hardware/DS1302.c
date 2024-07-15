@@ -125,7 +125,7 @@ void ds1032_init(void)
 	ds1302_wirte_rig(0x86, 0x01); // date31日
 	ds1302_wirte_rig(0x88, 0x01); // months10月
 	ds1302_wirte_rig(0x8a, 0x02); // days星期二
-	ds1302_wirte_rig(0x8c, 0x03); // year2023年
+	ds1302_wirte_rig(0x8c, 0x04); // year2023年
 	ds1302_wirte_rig(0x8e, 0x80); // 开启写保护
 }
 

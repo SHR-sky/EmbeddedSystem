@@ -1,5 +1,4 @@
-.\objects\reg_rw.o: ..\..\Hardware\Reg_RW.c
-.\objects\reg_rw.o: ..\..\Hardware\Reg_RW.h
+.\objects\reg_rw.o: ..\..\Hardware\LD3320\Reg_RW.c
 .\objects\reg_rw.o: ..\..\Hardware\sys.h
 .\objects\reg_rw.o: ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\reg_rw.o: ..\..\Libraries\CMSIS\Include\core_cm4.h
@@ -42,7 +41,10 @@
 .\objects\reg_rw.o: ..\..\Hardware\Serial.h
 .\objects\reg_rw.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\reg_rw.o: ..\..\Hardware\Delay.h
-.\objects\reg_rw.o: ..\..\Hardware\Reg_RW.h
-.\objects\reg_rw.o: ..\..\Hardware\LDChip.h
 .\objects\reg_rw.o: ..\..\Hardware\HC_SR04.h
+.\objects\reg_rw.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\reg_rw.o: ..\..\Hardware\DS1302.h
+.\objects\reg_rw.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
+.\objects\reg_rw.o: ..\..\Hardware\DFPlayer\DFPlayer.h
+.\objects\reg_rw.o: ..\..\Hardware\LD3320\LDChip.h
+.\objects\reg_rw.o: ..\..\Hardware\LD3320\Reg_RW.h

@@ -42,7 +42,10 @@
 .\objects\hc_sr04.o: ..\..\Hardware\Serial.h
 .\objects\hc_sr04.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\hc_sr04.o: ..\..\Hardware\Delay.h
-.\objects\hc_sr04.o: ..\..\Hardware\LD3320.h
-.\objects\hc_sr04.o: ..\..\Hardware\LD3320_config.h
 .\objects\hc_sr04.o: ..\..\Hardware\HC_SR04.h
+.\objects\hc_sr04.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\hc_sr04.o: ..\..\Hardware\DS1302.h
+.\objects\hc_sr04.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\time.h
+.\objects\hc_sr04.o: ..\..\Hardware\DFPlayer\DFPlayer.h
+.\objects\hc_sr04.o: ..\..\Hardware\LD3320\LDChip.h
+.\objects\hc_sr04.o: ..\..\Hardware\LD3320\Reg_RW.h

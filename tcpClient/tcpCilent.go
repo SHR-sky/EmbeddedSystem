@@ -26,7 +26,7 @@ func main() {
     for {
         // 等待客户端连接
         conn, err := listener.Accept()
-        if err != nil {
+        if err != nil && conn != nil {
             log.Printf("Failed to accept connection: %v", err)
             continue
         }
@@ -47,19 +47,19 @@ func handleConnection(conn net.Conn) {
     scanner := bufio.NewScanner(conn)
     for {
         // 读取一行消息
-		n, _ := conn.Read(buf[:])
+		n, err := conn.Read(buf[:])
 		recvStr := string(buf[:n])
-        fmt.Printf("Received message from %s: %s\n", conn.RemoteAddr(), recvStr)
-
-        // 这里可以根据收到的消息进行逻辑处理
-
-        // 回复消息给客户端
-        // reply := "Message received: " + message + "\n"
-        // _, err := conn.Write([]byte(reply))
-        // if err != nil {
-        //     log.Printf("Error writing to connection: %v", err)
-        //     return
-        // }
+        if(recvStr!="") {
+            fmt.Printf("Received message from %s: %s\n", conn.RemoteAddr(), recvStr)
+        }
+        if err != nil {
+            if err == net.ErrClosed {
+                fmt.Print("Client Close Connection.\n")
+                break;
+            } else {
+                break;
+            }
+        }
     }
 
     if err := scanner.Err(); err != nil {

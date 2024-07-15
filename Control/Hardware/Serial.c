@@ -62,6 +62,7 @@ void Serial_Init(void)
 
 	USART_Cmd(USART2, ENABLE);
 
+	/*
 	// USART3
 	// ---------------------------------------------------------------------------
 	// 接收ESP32数据
@@ -106,12 +107,68 @@ void Serial_Init(void)
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0X00;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure);
+	*/
+	// USART3 USART3_TX PD8 USART3_RX PD9
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
+
+	GPIO_PinAFConfig(GPIOD, GPIO_PinSource8, GPIO_AF_USART3);
+	GPIO_PinAFConfig(GPIOD, GPIO_PinSource9, GPIO_AF_USART3);
+
+	/* define the struct */
+	/* 三、配置结构体 */
+	
+	// TX
+	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
+	// GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
+	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
+	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_8;
+	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
+	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
+
+	/* 四、调用初始化函数，写入寄存器 */
+	GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+	// RX
+	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
+	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9;
+	GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+
+	// 发送STM32数据
+
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
+
+	USART_InitStruct.USART_BaudRate = 9600;
+	USART_InitStruct.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+	USART_InitStruct.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
+	USART_InitStruct.USART_Parity = USART_Parity_No;
+	USART_InitStruct.USART_StopBits = USART_StopBits_1;
+	USART_InitStruct.USART_WordLength = USART_WordLength_8b;
+	USART_Init(USART3, &USART_InitStruct);
+
+	USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);
+
+	// NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+
+	NVIC_InitStruct.NVIC_IRQChannel = USART3_IRQn;
+	NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 1;
+	NVIC_InitStruct.NVIC_IRQChannelSubPriority = 1;
+	NVIC_Init(&NVIC_InitStruct);
+
+	USART_Cmd(USART3, ENABLE);
 }
 
 void Serial_SendByte(uint8_t Byte)
 {
 	USART_SendData(USART2, Byte);
 	while (USART_GetFlagStatus(USART2, USART_FLAG_TXE) == RESET);
+}
+
+void Serial_SendByte2(uint8_t Byte)
+{
+	USART_SendData(USART3, Byte);
+	while (USART_GetFlagStatus(USART3, USART_FLAG_TXE) == RESET);
 }
 
 void Serial_SendArray(uint8_t *Array, uint16_t length)
@@ -127,6 +184,14 @@ void Serial_SendString(char *String)
 	for (int i = 0; String[i] != '\0'; i++)
 	{
 		Serial_SendByte(String[i]);
+	}
+}
+
+void Serial_SendString2(char *String)
+{
+	for (int i = 0; String[i] != '\0'; i++)
+	{
+		Serial_SendByte2(String[i]);
 	}
 }
 
@@ -157,6 +222,16 @@ void Serial_Printf(char *format, ...)
 	Serial_SendString(String);
 }
 
+void Serial_Printf2(char *format, ...)
+{
+	char String[100];
+	va_list arg;
+	va_start(arg, format);
+	vsprintf(String, format, arg);
+	va_end(arg);
+	Serial_SendString2(String);
+}
+
 uint8_t Serial_LookUpData(void)
 {
 	if (USART_GetFlagStatus(USART2, USART_FLAG_RXNE) == SET)
@@ -164,38 +239,9 @@ uint8_t Serial_LookUpData(void)
 	return 0;
 }
 
-void USART2_IRQHandler(void)
-{
-	if (USART_GetFlagStatus(USART2, USART_FLAG_RXNE) == SET)
-	{
-		USART_ClearITPendingBit(USART2, USART_IT_RXNE);
-		// Write you code
-	}
-}
-
 void Serial_End(void)
 {
 	Serial_SendByte(0xff);
 	Serial_SendByte(0xff);
 	Serial_SendByte(0xff);
-}
-
-// 中断发送串口数据
-void USART3_IRQHandler(void)
-{
-	uint8_t Res;
-	if (USART_GetITStatus(USART3, USART_IT_RXNE) != RESET)
-	{
-		Res = USART_ReceiveData(USART3); // 读取接收到的数据
-		if (Res == 0x23)
-			printf("PC");
-		USART_ClearITPendingBit(USART3, USART_IT_RXNE);
-	}
-	else if (USART_GetITStatus(USART3, USART_IT_IDLE) != RESET) // 空闲线路检测 接收中断
-	{
-		//USART3->SR; // 先读SR寄存器
-		//USART3->DR; // 再读DR寄存器
-		printf("Receive a frame data. ");
-		USART_ClearITPendingBit(USART3, USART_IT_IDLE);
-	}
 }

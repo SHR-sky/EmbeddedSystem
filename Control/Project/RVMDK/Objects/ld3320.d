@@ -1,5 +1,5 @@
-.\objects\ld3320.o: ..\..\Hardware\LD3320.c
-.\objects\ld3320.o: ..\..\Hardware\LD3320.h
+.\objects\ld3320.o: ..\..\Hardware\LD3320\LD3320.c
+.\objects\ld3320.o: ..\..\Hardware\LD3320\LD3320.h
 .\objects\ld3320.o: ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\ld3320.o: ..\..\Libraries\CMSIS\Include\core_cm4.h
 .\objects\ld3320.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
@@ -36,4 +36,4 @@
 .\objects\ld3320.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dcmi.h
 .\objects\ld3320.o: ..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fsmc.h
 .\objects\ld3320.o: E:\SoftLib\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\ld3320.o: ..\..\Hardware\LD3320_config.h
+.\objects\ld3320.o: ..\..\Hardware\LD3320\LD3320_config.h
