@@ -42,6 +42,8 @@ void User_Modification(u8 dat);
 void LD3320(void);
 uint8_t temperature,humidity;
 
+xPortSysTickHandler
+
 // 姿态检测主函数 用于检测到人的时候亮屏等功能
 u8 isScreenShut = 1;
 float formerDis = 10;
